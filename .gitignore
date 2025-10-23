@@ -39,3 +39,6 @@
 
 # debug information files
 *.dwo
+gouyoku/.vs/
+gouyoku/Log.txt
+gouyoku/x64/
