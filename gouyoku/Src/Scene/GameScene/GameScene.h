@@ -8,6 +8,7 @@ class Camera;
 class Stage;
 class ActorBase;
 
+
 class GameScene : public SceneBase
 {
 public:
@@ -20,6 +21,9 @@ public:
 	void Update(void)	override;	// XV
 	void Draw(void)		override;	// •`‰æ
 	void Release(void)	override;	// ‰ğ•ú
+
+private:
+	void isDoorCollision(void);
 
 private:
 	// ƒJƒƒ‰

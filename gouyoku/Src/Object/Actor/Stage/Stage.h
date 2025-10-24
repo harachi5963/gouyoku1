@@ -9,6 +9,9 @@ public:
 	Stage(void);
 	~Stage(void);
 
+	//Ž©ŒÈ”­Œõ
+	static constexpr COLOR_F EMI_COLOR = { 1.0f,1.0f,1.0f,1.0f };
+
 	void Init(void);
 	void Load(void);
 	void LoadEnd(void);

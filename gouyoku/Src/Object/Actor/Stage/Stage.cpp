@@ -15,7 +15,7 @@ Stage::~Stage(void)
 void Stage::Init(void)
 {
 	// モデルの位置
-	pos_ = { 0.0f, 80.0f, 0.0f };
+	pos_ = { 0.0f, 0.0f, 0.0f };
 
 	// モデルの位置を設定
 	MV1SetPosition(modelId_, pos_);
@@ -30,6 +30,10 @@ void Stage::Init(void)
 
 	// 衝突判定情報の構築
 	MV1SetupCollInfo(modelId_, -1);
+
+	//自己発行
+	MV1SetMaterialAmbColor(modelId_, 0, EMI_COLOR);
+	MV1SetMaterialDifColor(modelId_, 0, EMI_COLOR);
 }
 
 void Stage::Load(void)

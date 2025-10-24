@@ -8,8 +8,13 @@
 #include "../../Object/Actor/ActorBase.h"
 #include "../../Object/Actor/Player/Player.h"
 #include "../../Object/Actor/Enemy/Enemy.h"
-
 #include "../../Object/Actor/Stage/Stage.h"
+#include "../../Object/Actor/Object/Door.h"
+#include "../../Object/Actor/Object/Desuku.h"
+#include "../../Object/Actor/Object/Chair.h"
+
+#include "../../Utility/AsoUtility.h"
+#include "../../Input/InputManager.h"
 
 GameScene::GameScene(void)
 {
@@ -38,14 +43,20 @@ void GameScene::Init(void)
 void GameScene::Load(void)
 {
 	// 生成処理
-	camera_ = new Camera();					// カメラの生成
-	stage_ = new Stage();					// ステージの生成
-	Player* player_ = new Player(camera_);	// プレイヤーの生成
-	Enemy* enemy_ = new Enemy(player_);		// 敵の生成
+	camera_ = new Camera();						// カメラの生成
+	stage_ = new Stage();						// ステージの生成
+
+	// アクターの生成
+	ActorBase* player_ = new Player(camera_);	// プレイヤーの生成
+	ActorBase* door1 = new Door();				// ドアを生成
+	ActorBase* Desuku1 = new Desuku();			//机を生成
+	ActorBase* Chair1 = new Chair();
 
 	// アクター配列に入れる
 	allActor_.push_back(player_);
-	allActor_.push_back(enemy_);
+	allActor_.push_back(door1);
+	allActor_.push_back(Desuku1);
+	allActor_.push_back(Chair1);
 
 	// カメラモード変更
 	camera_->SetFollow(player_);
@@ -93,10 +104,10 @@ void GameScene::Update(void)
 		actor->Update();
 
 		// 当たり判定を取るか？
-		if (actor)
+		if (actor->GetisCollision())
 		{
 			// 当たり判定
-			//FieldCollision(actor);
+			FieldCollision(actor);
 			WallCollision(actor);
 		}
 	}
@@ -109,6 +120,7 @@ void GameScene::Draw(void)
 
 	// ステージ描画
 	stage_->Draw();
+
 
 	// 全てのアクターを回す
 	for (auto actor : allActor_)
@@ -123,6 +135,7 @@ void GameScene::Release(void)
 	// ステージ解放
 	stage_->Release();
 	delete stage_;
+
 	
 	// 全てのアクターを回す
 	for (auto actor : allActor_)
@@ -134,6 +147,49 @@ void GameScene::Release(void)
 
 	// 配列をクリア
 	allActor_.clear();
+}
+
+void GameScene::isDoorCollision(void)
+{
+	// プレイヤーの座標保持用
+	ActorBase* player = nullptr;
+
+	// 全てのオブジェクトを回す
+	for (auto actor : allActor_)
+	{
+		// プレイヤーだったら
+		if (actor->GetTag() != ActorBase::TAG::PLAYER)
+		{
+			player = actor;
+		}
+	}
+
+	// 全てのオブジェクトを回す
+	for (auto actor : allActor_)
+	{
+		// ドアじゃないなら判定しない
+		if (actor->GetTag() != ActorBase::TAG::DOOR)
+		{
+			// ドアじゃないのでこのオブジェクトをスキップ
+			continue;
+		}
+
+		// オブジェクトとカメラが接触しているか？
+		if (AsoUtility::IsHitSpheres(
+			actor->GetPos(),
+			actor->GetSphereRadius(),
+			player->GetPos(),
+			player->GetSphereRadius()
+		))
+		{
+			// キーが押されているか？
+			if (InputManager::GetInstance()->IsTrgDown(KEY_INPUT_F))
+			{
+				// カメラを初期位置に
+				player->Init();
+			}
+		}
+	}
 }
 
 // ステージの床とプレイヤーの衝突

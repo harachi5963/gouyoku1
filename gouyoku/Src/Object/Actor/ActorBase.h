@@ -6,6 +6,15 @@ class AnimationController;
 class ActorBase
 {
 public:
+	enum TAG
+	{
+		NON,
+		PLAYER,
+		HUMAN,
+		DOOR,
+	};
+
+public:
 
 	ActorBase(void);			// コンストラクタ
 	virtual ~ActorBase(void);	// デストラクタ
@@ -25,7 +34,14 @@ public:
 	const VECTOR& GetEndCapsulePos(void) const { return endCapsulePos_; }
 	const float& GetCapsuleRadius(void) const { return capsuleRadius_; }
 
+	// 当たり判定のフラグを取得
 	const bool& GetisCollision(void) const { return isCollision_; }
+
+	// 球体の当たり判定の半径を取得
+	const float GetSphereRadius(void)const { return sphereRadius_; }
+
+	// タグを取得
+	const TAG GetTag(void)const { return tag_; }
 
 	// ステージと衝突
 	void CollisionStage(const VECTOR& pos);
@@ -45,6 +61,9 @@ protected:
 	VECTOR localAngle_;
 	VECTOR scale_;
 
+	// 球体の当たり判定の大きさ
+	float sphereRadius_;
+
 	// カプセルの当たり判定座標
 	VECTOR startCapsulePos_;
 	VECTOR endCapsulePos_;
@@ -61,6 +80,15 @@ protected:
 
 	// ジャンプ力
 	float jumpPow_;
+
+	// タグの設定
+	TAG tag_;
+
+	// 描画フラグ
+	bool isDraw_;
+
+	// 重力フラグ
+	bool isGravity_;
 
 	// リソースロード
 	virtual void InitLoad(void) = 0;

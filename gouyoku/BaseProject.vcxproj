@@ -22,6 +22,9 @@
     <ClCompile Include="Src\Common\FpsControl.cpp" />
     <ClCompile Include="Src\Object\Actor\ActorBase.cpp" />
     <ClCompile Include="Src\Object\Actor\Enemy\Enemy.cpp" />
+    <ClCompile Include="Src\Object\Actor\Object\Chair.cpp" />
+    <ClCompile Include="Src\Object\Actor\Object\Desuku.cpp" />
+    <ClCompile Include="Src\Object\Actor\Object\Door.cpp" />
     <ClCompile Include="Src\Scene\GameScene\GameScene.cpp" />
     <ClCompile Include="Src\Scene\Loading\Loading.cpp" />
     <ClCompile Include="Src\Utility\MatrixUtility.cpp" />
@@ -44,6 +47,9 @@
     <ClInclude Include="Src\Common\FpsControl.h" />
     <ClInclude Include="Src\Object\Actor\ActorBase.h" />
     <ClInclude Include="Src\Object\Actor\Enemy\Enemy.h" />
+    <ClInclude Include="Src\Object\Actor\Object\Chair.h" />
+    <ClInclude Include="Src\Object\Actor\Object\Desuku.h" />
+    <ClInclude Include="Src\Object\Actor\Object\Door.h" />
     <ClInclude Include="Src\Scene\GameScene\GameScene.h" />
     <ClInclude Include="Src\Scene\Loading\Loading.h" />
     <ClInclude Include="Src\Utility\MatrixUtility.h" />

@@ -42,14 +42,6 @@ void Player::InitTransform(void)
 	// モデルの位置設定
 	pos_ = AsoUtility::VECTOR_ZERO;
 	MV1SetPosition(modelId_, pos_);
-
-	// 当たり判定を作成
-	startCapsulePos_ = { 0.0f,110,0.0f };
-	endCapsulePos_ = { 0.0f,30.0f,0.0f };
-	capsuleRadius_ = 20.0f;
-	
-	// 当たり判定を取るか
-	isCollision_ = true;
 }
 
 void Player::InitAnimation(void)
@@ -69,6 +61,21 @@ void Player::InitAnimation(void)
 
 void Player::InitPost(void)
 {
+	// タグの設定
+	tag_ = TAG::PLAYER;
+
+	// 当たり判定を作成
+	startCapsulePos_ = { 0.0f,110,0.0f };
+	endCapsulePos_ = { 0.0f,30.0f,0.0f };
+	capsuleRadius_ = 20.0f;
+
+	sphereRadius_ = 20.0f;
+
+	isGravity_ = true;
+
+	// 当たり判定を取るか
+	isCollision_ = true;
+
 }
 
 void Player::Update(void)
@@ -82,13 +89,12 @@ void Player::Update(void)
 void Player::Draw(void)
 {
 	ActorBase::Draw();
-
 	DrawFormatString(
 		0, 50, 0xffffff,
-		"キャラ角度　 ：(%.1f, %.1f, %.1f)",
-		AsoUtility::Rad2DegF(angle_.x),
-		AsoUtility::Rad2DegF(angle_.y),
-		AsoUtility::Rad2DegF(angle_.z)
+		"キャラ座標　 ：(%f, %f, %f)",
+		pos_.x,
+		pos_.y,
+		pos_.z
 	);
 }
 
