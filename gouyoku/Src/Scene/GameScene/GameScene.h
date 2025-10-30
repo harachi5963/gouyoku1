@@ -25,6 +25,9 @@ public:
 private:
 	void isDoorCollision(void);
 
+	// ドア開いた
+	void isDoorOpen(void);
+
 private:
 	// カメラ
 	Camera* camera_;

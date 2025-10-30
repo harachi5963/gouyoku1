@@ -15,8 +15,6 @@ public:
 		NON,
 	};
 
-	//©ŒÈ”­Œõ
-	static constexpr COLOR_F EMI_COLOR = { 1.0f,1.0f,1.0f,1.0f };
 public:
 
 	// XV

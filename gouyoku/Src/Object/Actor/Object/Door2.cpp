@@ -1,48 +1,48 @@
-#include "Door.h"
+#include "Door2.h"
 #include "../../Common/AnimationController.h"
 #include "../../../Input/InputManager.h"
 
-Door::Door()
+Door2::Door2()
 {
 }
 
-Door::~Door()
+Door2::~Door2()
 {
 }
 
-void Door::InitLoad(void)
+void Door2::InitLoad(void)
 {
 }
 
-void Door::InitTransform(void)
+void Door2::InitTransform(void)
 {
-	pos_ = { -2907.340820f,0.000198f,-777.524658f };
+	pos_ = { 2910.972900f,0.000191f,-735.282410f };
 }
 
-void Door::InitAnimation(void)
+void Door2::InitAnimation(void)
 {
 }
 
-void Door::InitPost(void)
+void Door2::InitPost(void)
 {
 	tag_ = TAG::DOOR;
 	isCollision_ = false;
 	sphereRadius_ = 300.0f;
 }
 
-void Door::Update(void)
+void Door2::Update(void)
 {
 	ActorBase::Update();
 }
 
-void Door::Draw(void)
+void Door2::Draw(void)
 {
 	DrawSphere3D(pos_, sphereRadius_, 16, 0xff0000, 0xff0000, false);
 
 	ActorBase::Draw();
 }
 
-void Door::Release(void)
+void Door2::Release(void)
 {
 	ActorBase::Release();
 }

@@ -11,6 +11,7 @@ ActorBase::ActorBase(void)
 	animType_ = 0;
 
 	modelId_ = -1;
+	ihenModelId_ = -1;
 	pos_ = { 0.0f,0.0f,0.0f };
 	angle_ = { 0.0f,0.0f,0.0f };
 	localAngle_ = { 0.0f,0.0f,0.0f };
@@ -27,6 +28,7 @@ ActorBase::ActorBase(void)
 	tag_ = TAG::NON;
 	isDraw_ = true;
 	isGravity_ = false;
+	isIhen_ = false;
 
 	moveDir_ = { 0.0f,0.0f,0.0f };
 	jumpPow_ = 0.0f;
@@ -42,9 +44,6 @@ void ActorBase::Init(void)
 	// Transform初期化
 	InitTransform();
 
-	// アニメーションの初期化
-	InitAnimation();
-
 	// 初期化後の個別処理
 	InitPost();
 }
@@ -57,12 +56,16 @@ void ActorBase::Load(void)
 
 void ActorBase::LoadEnd(void)
 {
+	// アニメーションの初期化
+	InitAnimation();
+
 	// 初期化
 	Init();
 }
 
 void ActorBase::Update(void)
 {
+
 	// プレイヤーの遅延回転処理
 	DelayRotate();
 
@@ -71,6 +74,7 @@ void ActorBase::Update(void)
 
 	// 回転行列をモデルに反映
 	MV1SetRotationMatrix(modelId_, mat);
+	MV1SetRotationMatrix(ihenModelId_, mat);
 
 	// プレイヤーの移動処理
 	Move();
@@ -87,11 +91,22 @@ void ActorBase::Update(void)
 
 	// モデルに座標を設定する
 	MV1SetPosition(modelId_, pos_);
+	MV1SetPosition(ihenModelId_, pos_);
 }
 
 void ActorBase::Draw(void)
 {
-	MV1DrawModel(modelId_);
+	// 異変があるか？
+	if (isIhen_)
+	{
+		// 異変なし
+		MV1DrawModel(ihenModelId_);
+	}
+	else
+	{
+		// 異変なし
+		MV1DrawModel(modelId_);
+	}
 
 	DrawSphere3D(
 		VAdd(pos_,startCapsulePos_),
@@ -110,11 +125,15 @@ void ActorBase::Draw(void)
 		0x00ff00,
 		false
 	);
+
+	
+
 }
 
 void ActorBase::Release(void)
 {
 	MV1DeleteModel(modelId_);
+	MV1DeleteModel(ihenModelId_);
 	delete animationController_;
 }
 

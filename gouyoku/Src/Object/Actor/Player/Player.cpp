@@ -54,6 +54,8 @@ void Player::InitAnimation(void)
 		static_cast<int>(ANIM_TYPE::IDLE), 0.5f, Application::PATH_MODEL + "Player/Idle.mv1");
 	animationController_->Add(
 		static_cast<int>(ANIM_TYPE::WALK), 0.5f, Application::PATH_MODEL + "Player/Walk.mv1");
+	animationController_->Add(
+		static_cast<int>(ANIM_TYPE::RUN), 1.5f, Application::PATH_MODEL + "Player/Walk.mv1");
 
 	// 初期アニメーションの再生
 	animationController_->Play(static_cast<int>(ANIM_TYPE::IDLE));
@@ -109,7 +111,6 @@ void Player::Move(void)
 	VECTOR cameraAngles = camera_->GetAngle();
 
 	// 移動量
-	const float MOVE_POW = 5.0f;
 	VECTOR dir = AsoUtility::VECTOR_ZERO;
 
 	// ゲームパッドが接続数で処理を分ける
@@ -151,11 +152,23 @@ void Player::Move(void)
 		// 回転行列を使用して、ベクトルを回転させる
 		moveDir_ = VTransform(dir, mat);
 
-		// 方向×スピードで移動量を作って、座標に足して移動
-		pos_ = VAdd(pos_, VScale(moveDir_, MOVE_POW));
+		// 走り
+		if (InputManager::GetInstance()->IsNew(KEY_INPUT_LSHIFT))
+		{
+			// 方向×スピードで移動量を作って、座標に足して移動
+			pos_ = VAdd(pos_, VScale(moveDir_, RUN_POW));
 
-		// 歩くアニメーションの再生
-		animationController_->Play(static_cast<int>(ANIM_TYPE::WALK));
+			// 歩くアニメーションの再生
+			animationController_->Play(static_cast<int>(ANIM_TYPE::RUN));
+		}
+		else
+		{
+			// 方向×スピードで移動量を作って、座標に足して移動
+			pos_ = VAdd(pos_, VScale(moveDir_, MOVE_POW));
+
+			// 歩くアニメーションの再生
+			animationController_->Play(static_cast<int>(ANIM_TYPE::WALK));
+		}
 	}
 	else
 	{

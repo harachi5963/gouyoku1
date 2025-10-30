@@ -12,14 +12,19 @@ Chair::~Chair()
 
 void Chair::InitLoad(void)
 {
-	modelId_ = MV1LoadModel("Data/object/Chair/Chair.mv1");
+	tag_ = TAG::IHEN_OBJECT;
+	modelId_ = MV1LoadModel("Data/object/Chair/Chair2.mv1");
+	ihenModelId_ = MV1LoadModel("Data/object/Chair/Chair.mv1");
 }
 
 void Chair::InitTransform(void)
 {
 	pos_ = { 700.0f,0.0f,0.0f };
-	scale_ = { 1.0f,1.0f,1.0f };
+	scale_ = { 2.0f,2.0f,2.0f };
 	angle_ = { 0.0f,0.0f,0.0f };
+
+	// サイズ変更
+	MV1SetScale(modelId_, scale_);
 }
 
 void Chair::InitAnimation(void)

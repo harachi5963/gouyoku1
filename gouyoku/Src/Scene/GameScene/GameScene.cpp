@@ -8,8 +8,11 @@
 #include "../../Object/Actor/ActorBase.h"
 #include "../../Object/Actor/Player/Player.h"
 #include "../../Object/Actor/Enemy/Enemy.h"
+#include "../../Object/Actor/Object/Pc.h"
 #include "../../Object/Actor/Stage/Stage.h"
+#include "../../Object/Actor/Object/VendingMachine.h"
 #include "../../Object/Actor/Object/Door.h"
+#include "../../Object/Actor/Object/Door2.h"
 #include "../../Object/Actor/Object/Desuku.h"
 #include "../../Object/Actor/Object/Chair.h"
 
@@ -48,15 +51,21 @@ void GameScene::Load(void)
 
 	// アクターの生成
 	ActorBase* player_ = new Player(camera_);	// プレイヤーの生成
-	ActorBase* door1 = new Door();				// ドアを生成
-	ActorBase* Desuku1 = new Desuku();			//机を生成
-	ActorBase* Chair1 = new Chair();
+	ActorBase* vendingMachine = new VendingMachine();	// 自販機を生成
+	ActorBase* door = new Door();						// ドアを生成
+	ActorBase* door2 = new Door2();						// ドアを生成
+	ActorBase* pc = new Pc();						// ドアを生成
+	ActorBase* desuku1 = new Desuku();			//机を生成
+	ActorBase* chair1 = new Chair();
 
 	// アクター配列に入れる
 	allActor_.push_back(player_);
-	allActor_.push_back(door1);
-	allActor_.push_back(Desuku1);
-	allActor_.push_back(Chair1);
+	allActor_.push_back(vendingMachine);
+	allActor_.push_back(door);
+	allActor_.push_back(door2);
+	allActor_.push_back(pc);
+	allActor_.push_back(desuku1);
+	allActor_.push_back(chair1);
 
 	// カメラモード変更
 	camera_->SetFollow(player_);
@@ -111,6 +120,9 @@ void GameScene::Update(void)
 			WallCollision(actor);
 		}
 	}
+
+	// ドアとの当たり判定
+	isDoorCollision();
 }
 
 void GameScene::Draw(void)
@@ -136,7 +148,7 @@ void GameScene::Release(void)
 	stage_->Release();
 	delete stage_;
 
-	
+
 	// 全てのアクターを回す
 	for (auto actor : allActor_)
 	{
@@ -158,7 +170,7 @@ void GameScene::isDoorCollision(void)
 	for (auto actor : allActor_)
 	{
 		// プレイヤーだったら
-		if (actor->GetTag() != ActorBase::TAG::PLAYER)
+		if (actor->GetTag() == ActorBase::TAG::PLAYER)
 		{
 			player = actor;
 		}
@@ -187,8 +199,27 @@ void GameScene::isDoorCollision(void)
 			{
 				// カメラを初期位置に
 				player->Init();
+
+				// ドアを開いた
+				isDoorOpen();
 			}
 		}
+	}
+}
+
+void GameScene::isDoorOpen(void)
+{
+	// 全てのオブジェクトを回す
+	for (auto actor : allActor_)
+	{
+		if (actor->GetTag() != ActorBase::TAG::IHEN_OBJECT)
+		{
+			// 異変オブジェクトじゃないのでスキップ
+			continue;
+		}
+		
+		// 異変オブジェクトを発見
+		actor->SetIhen(true);
 	}
 }
 

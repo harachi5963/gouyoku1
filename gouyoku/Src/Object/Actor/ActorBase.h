@@ -11,6 +11,7 @@ public:
 		NON,
 		PLAYER,
 		HUMAN,
+		IHEN_OBJECT,
 		DOOR,
 	};
 
@@ -43,6 +44,9 @@ public:
 	// タグを取得
 	const TAG GetTag(void)const { return tag_; }
 
+	// 異変フラグをセット
+	const void SetIhen(bool isihen) { isIhen_ = isihen; }
+
 	// ステージと衝突
 	void CollisionStage(const VECTOR& pos);
 
@@ -56,6 +60,8 @@ protected:
 
 	// モデル情報
 	int modelId_;
+	int ihenModelId_;
+
 	VECTOR pos_;
 	VECTOR angle_;
 	VECTOR localAngle_;
@@ -89,6 +95,9 @@ protected:
 
 	// 重力フラグ
 	bool isGravity_;
+
+	// 異変フラグ
+	bool isIhen_;
 
 	// リソースロード
 	virtual void InitLoad(void) = 0;
