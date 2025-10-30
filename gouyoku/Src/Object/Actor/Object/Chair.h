@@ -1,33 +1,12 @@
 #pragma once
-#include <vector>
-#include <DxLib.h>
-
 #include "../ActorBase.h"
 
-class Camera;
-
-class Player : public ActorBase
+class Chair:public ActorBase
 {
-
 public:
-	static constexpr float MOVE_POW = 5.0f;
-	static constexpr float RUN_POW = 10.0f;
+	Chair();
+	~Chair();
 public:
-
-	// アニメーション種別
-	enum class ANIM_TYPE
-	{
-		IDLE,
-		WALK,
-		RUN,
-		MAX,
-	};
-
-	// コンストラクタ
-	Player(Camera* camera);
-
-	// デストラクタ
-	~Player(void) override;
 
 	// 更新
 	void Update(void) override;
@@ -52,10 +31,6 @@ private:
 	// 初期化後の個別処理
 	void InitPost(void) override;
 
-	// 移動処理
-	void Move(void) override;
-
-private:
-	// カメラ
-	Camera* camera_;
 };
+
+

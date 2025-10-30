@@ -42,14 +42,6 @@ void Player::InitTransform(void)
 	// モデルの位置設定
 	pos_ = AsoUtility::VECTOR_ZERO;
 	MV1SetPosition(modelId_, pos_);
-
-	// 当たり判定を作成
-	startCapsulePos_ = { 0.0f,110,0.0f };
-	endCapsulePos_ = { 0.0f,30.0f,0.0f };
-	capsuleRadius_ = 20.0f;
-	
-	// 当たり判定を取るか
-	isCollision_ = true;
 }
 
 void Player::InitAnimation(void)
@@ -62,6 +54,8 @@ void Player::InitAnimation(void)
 		static_cast<int>(ANIM_TYPE::IDLE), 0.5f, Application::PATH_MODEL + "Player/Idle.mv1");
 	animationController_->Add(
 		static_cast<int>(ANIM_TYPE::WALK), 0.5f, Application::PATH_MODEL + "Player/Walk.mv1");
+	animationController_->Add(
+		static_cast<int>(ANIM_TYPE::RUN), 1.5f, Application::PATH_MODEL + "Player/Walk.mv1");
 
 	// 初期アニメーションの再生
 	animationController_->Play(static_cast<int>(ANIM_TYPE::IDLE));
@@ -69,6 +63,21 @@ void Player::InitAnimation(void)
 
 void Player::InitPost(void)
 {
+	// タグの設定
+	tag_ = TAG::PLAYER;
+
+	// 当たり判定を作成
+	startCapsulePos_ = { 0.0f,110,0.0f };
+	endCapsulePos_ = { 0.0f,30.0f,0.0f };
+	capsuleRadius_ = 20.0f;
+
+	sphereRadius_ = 20.0f;
+
+	isGravity_ = true;
+
+	// 当たり判定を取るか
+	isCollision_ = true;
+
 }
 
 void Player::Update(void)
@@ -82,13 +91,12 @@ void Player::Update(void)
 void Player::Draw(void)
 {
 	ActorBase::Draw();
-
 	DrawFormatString(
 		0, 50, 0xffffff,
-		"キャラ角度　 ：(%.1f, %.1f, %.1f)",
-		AsoUtility::Rad2DegF(angle_.x),
-		AsoUtility::Rad2DegF(angle_.y),
-		AsoUtility::Rad2DegF(angle_.z)
+		"キャラ座標　 ：(%f, %f, %f)",
+		pos_.x,
+		pos_.y,
+		pos_.z
 	);
 }
 
@@ -103,7 +111,6 @@ void Player::Move(void)
 	VECTOR cameraAngles = camera_->GetAngle();
 
 	// 移動量
-	const float MOVE_POW = 5.0f;
 	VECTOR dir = AsoUtility::VECTOR_ZERO;
 
 	// ゲームパッドが接続数で処理を分ける
@@ -145,11 +152,23 @@ void Player::Move(void)
 		// 回転行列を使用して、ベクトルを回転させる
 		moveDir_ = VTransform(dir, mat);
 
-		// 方向×スピードで移動量を作って、座標に足して移動
-		pos_ = VAdd(pos_, VScale(moveDir_, MOVE_POW));
+		// 走り
+		if (InputManager::GetInstance()->IsNew(KEY_INPUT_LSHIFT))
+		{
+			// 方向×スピードで移動量を作って、座標に足して移動
+			pos_ = VAdd(pos_, VScale(moveDir_, RUN_POW));
 
-		// 歩くアニメーションの再生
-		animationController_->Play(static_cast<int>(ANIM_TYPE::WALK));
+			// 歩くアニメーションの再生
+			animationController_->Play(static_cast<int>(ANIM_TYPE::RUN));
+		}
+		else
+		{
+			// 方向×スピードで移動量を作って、座標に足して移動
+			pos_ = VAdd(pos_, VScale(moveDir_, MOVE_POW));
+
+			// 歩くアニメーションの再生
+			animationController_->Play(static_cast<int>(ANIM_TYPE::WALK));
+		}
 	}
 	else
 	{

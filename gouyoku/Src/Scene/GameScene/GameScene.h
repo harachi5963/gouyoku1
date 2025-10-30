@@ -8,6 +8,7 @@ class Camera;
 class Stage;
 class ActorBase;
 
+
 class GameScene : public SceneBase
 {
 public:
@@ -20,6 +21,12 @@ public:
 	void Update(void)	override;	// 更新
 	void Draw(void)		override;	// 描画
 	void Release(void)	override;	// 解放
+
+private:
+	void isDoorCollision(void);
+
+	// ドア開いた
+	void isDoorOpen(void);
 
 private:
 	// カメラ

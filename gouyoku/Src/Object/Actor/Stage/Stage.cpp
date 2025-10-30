@@ -15,21 +15,25 @@ Stage::~Stage(void)
 void Stage::Init(void)
 {
 	// モデルの位置
-	pos_ = { 0.0f, 80.0f, 0.0f };
+	pos_ = { 0.0f, 0.0f, 0.0f };
 
 	// モデルの位置を設定
 	MV1SetPosition(modelId_, pos_);
 
-	// マテリアルの数を取得
-	int num = MV1GetMaterialNum(modelId_);
-	for (int i = 1; i < num; i++)
-	{
-		// 0は地面なので、1から設定する
-		MV1SetMaterialEmiColor(modelId_, i, GetColorF(0.2f, 0.2f, 0.2f, 1.0f));
-	}
+	//// マテリアルの数を取得
+	//int num = MV1GetMaterialNum(modelId_);
+	//for (int i = 1; i < num; i++)
+	//{
+	//	// 0は地面なので、1から設定する
+	//	MV1SetMaterialEmiColor(modelId_, i, GetColorF(0.2f, 0.2f, 0.2f, 1.0f));
+	//}
 
 	// 衝突判定情報の構築
 	MV1SetupCollInfo(modelId_, -1);
+
+//	//自己発行
+//	MV1SetMaterialAmbColor(modelId_, 0, EMI_COLOR);
+//	MV1SetMaterialDifColor(modelId_, 0, EMI_COLOR);
 }
 
 void Stage::Load(void)
