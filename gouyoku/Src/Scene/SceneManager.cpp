@@ -5,6 +5,7 @@
 #include "Loading/Loading.h"
 #include "TitleScene/TitleScene.h"
 #include "GameScene/GameScene.h"
+#include"Gameclear/GameClear.h"
 
 SceneManager* SceneManager::instance_ = nullptr;
 
@@ -131,6 +132,9 @@ void SceneManager::ChangeScene(SCENE_ID nextId)
 		break;
 	case SceneManager::SCENE_ID::GAME:
 		scene_ = new GameScene();
+		break;
+	case SceneManager::SCENE_ID::CLEAR:
+		scene_ = new ClearScene();
 		break;
 	default:
 		break;

@@ -13,7 +13,8 @@ public:
 	{
 		NONE,
 		TITLE,
-		GAME
+		GAME,
+		CLEAR
 	};
 
 public:

@@ -22,6 +22,7 @@
     <ClCompile Include="Src\Common\FpsControl.cpp" />
     <ClCompile Include="Src\Object\Actor\ActorBase.cpp" />
     <ClCompile Include="Src\Object\Actor\Enemy\Enemy.cpp" />
+    <ClCompile Include="Src\Scene\Gameclear\GameClear.cpp" />
     <ClCompile Include="Src\Scene\GameScene\GameScene.cpp" />
     <ClCompile Include="Src\Scene\Loading\Loading.cpp" />
     <ClCompile Include="Src\Utility\MatrixUtility.cpp" />
@@ -44,6 +45,7 @@
     <ClInclude Include="Src\Common\FpsControl.h" />
     <ClInclude Include="Src\Object\Actor\ActorBase.h" />
     <ClInclude Include="Src\Object\Actor\Enemy\Enemy.h" />
+    <ClInclude Include="Src\Scene\Gameclear\GameClear.h" />
     <ClInclude Include="Src\Scene\GameScene\GameScene.h" />
     <ClInclude Include="Src\Scene\Loading\Loading.h" />
     <ClInclude Include="Src\Utility\MatrixUtility.h" />
