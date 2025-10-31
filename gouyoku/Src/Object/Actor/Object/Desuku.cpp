@@ -12,7 +12,7 @@ Desuku::~Desuku()
 
 void Desuku::InitLoad(void)
 {
-	modelId_ = MV1LoadModel("Data/object/Desuku/desuku4.mv1");
+	//modelId_ = MV1LoadModel("Data/object/Desuku/desuku4.mv1");
 }
 
 void Desuku::InitTransform(void)

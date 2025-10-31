@@ -32,7 +32,7 @@ void SceneManager::Init(void)
 	Init3D();
 
 	// Å‰‚Íƒ^ƒCƒgƒ‹‰æ–Ê‚©‚ç
-	ChangeScene(SCENE_ID::GAME);
+	ChangeScene(SCENE_ID::TITLE);
 }
 
 void SceneManager::Init3D(void)

@@ -12,7 +12,7 @@ VendingMachine::~VendingMachine()
 
 void VendingMachine::InitLoad(void)
 {
-	modelId_ = MV1LoadModel("Data/object/Vending machine/Vending machine.mv1");
+	//modelId_ = MV1LoadModel("Data/object/Vending machine/Vending machine.mv1");
 	ihenModelId_ = MV1LoadModel("Data/object/Vending machine/Vending machine1.mv1");
 }
 
