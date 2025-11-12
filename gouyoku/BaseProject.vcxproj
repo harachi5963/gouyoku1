@@ -22,6 +22,10 @@
     <ClCompile Include="Src\Common\FpsControl.cpp" />
     <ClCompile Include="Src\Object\Actor\ActorBase.cpp" />
     <ClCompile Include="Src\Object\Actor\Enemy\Enemy.cpp" />
+    <ClCompile Include="Src\Object\Actor\Object\Basketball.cpp" />
+    <ClCompile Include="Src\Object\Actor\Object\Soccerball.cpp" />
+    <ClCompile Include="Src\Object\Actor\Object\Tenisuball.cpp" />
+    <ClCompile Include="Src\Object\Actor\Object\Volleyball.cpp" />
     <ClCompile Include="Src\Scene\Gameclear\GameClear.cpp" />
     <ClCompile Include="Src\Object\Actor\Object\Chair.cpp" />
     <ClCompile Include="Src\Object\Actor\Object\Desuku.cpp" />
@@ -51,6 +55,10 @@
     <ClInclude Include="Src\Common\FpsControl.h" />
     <ClInclude Include="Src\Object\Actor\ActorBase.h" />
     <ClInclude Include="Src\Object\Actor\Enemy\Enemy.h" />
+    <ClInclude Include="Src\Object\Actor\Object\Basketball.h" />
+    <ClInclude Include="Src\Object\Actor\Object\Soccerball.h" />
+    <ClInclude Include="Src\Object\Actor\Object\Tenisuball.h" />
+    <ClInclude Include="Src\Object\Actor\Object\Volleyball.h" />
     <ClInclude Include="Src\Scene\Gameclear\GameClear.h" />
     <ClInclude Include="Src\Object\Actor\Object\Chair.h" />
     <ClInclude Include="Src\Object\Actor\Object\Desuku.h" />
