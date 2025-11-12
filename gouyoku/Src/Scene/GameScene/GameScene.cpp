@@ -17,11 +17,13 @@
 #include "../../Object/Actor/Object/Volleyball.h"
 #include "../../Object/Actor/Object/Door.h"
 #include "../../Object/Actor/Object/Door2.h"
+#include "../../Object/Actor/Object/Tirasi.h"
 #include "../../Object/Actor/Object/Desuku.h"
 #include "../../Object/Actor/Object/Chair.h"
 
 #include "../../Utility/AsoUtility.h"
 #include "../../Input/InputManager.h"
+#include "../SceneManager.h"
 
 GameScene::GameScene(void)
 {
@@ -63,6 +65,7 @@ void GameScene::Load(void)
 	ActorBase* tenisuball = new Tenisuball();						// ドアを生成
 	ActorBase* volleyball = new Volleyball();						// ドアを生成
 	ActorBase* pc = new Pc();						// ドアを生成
+	ActorBase* tirasi = new Tirasi();						// チラシを生成
 	ActorBase* desuku1 = new Desuku();			//机を生成
 	ActorBase* chair1 = new Chair();
 
@@ -76,6 +79,7 @@ void GameScene::Load(void)
 	allActor_.push_back(tenisuball);
 	allActor_.push_back(volleyball);
 	allActor_.push_back(pc);
+	allActor_.push_back(tirasi);
 	allActor_.push_back(desuku1);
 	allActor_.push_back(chair1);
 
@@ -214,6 +218,14 @@ void GameScene::isDoorCollision(void)
 
 				// ドアを開いた
 				isDoorOpen();
+			}
+
+			//スペースキーが押されたら
+			if (InputManager::GetInstance()->IsTrgUp(KEY_INPUT_SPACE))
+			{
+				//ゲームシーンへ
+				SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::CLEAR);
+				return;
 			}
 		}
 	}

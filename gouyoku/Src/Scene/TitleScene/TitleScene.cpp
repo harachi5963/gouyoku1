@@ -162,6 +162,6 @@ void TitleScene::toNextScene(void)
 	if (InputManager::GetInstance()->IsTrgUp(KEY_INPUT_SPACE))
 	{
 		//ƒQ[ƒ€ƒV[ƒ“‚Ö
-		SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::CLEAR);
+		SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::GAME);
 	}
 }
