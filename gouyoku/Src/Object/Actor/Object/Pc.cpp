@@ -12,8 +12,8 @@ Pc::~Pc()
 
 void Pc::InitLoad(void)
 {
-	modelId_ = MV1LoadModel("Data/object/PC/PC.mv1");
-	ihenModelId_ = MV1LoadModel("Data/object/PC/I_PC.mv1");
+	modelId_ = MV1LoadModel("Data/object/Ball/basketball.mv1");
+	ihenModelId_ = MV1LoadModel("Data/object/Ball/basketball.mv1");
 }
 
 void Pc::InitTransform(void)

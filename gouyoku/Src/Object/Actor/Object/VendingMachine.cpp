@@ -12,15 +12,20 @@ VendingMachine::~VendingMachine()
 
 void VendingMachine::InitLoad(void)
 {
-	//modelId_ = MV1LoadModel("Data/object/Vending machine/Vending machine.mv1");
+	modelId_ = MV1LoadModel("Data/object/Vending machine/ZIHANKImv1.mv1");
 	ihenModelId_ = MV1LoadModel("Data/object/Vending machine/Vending machine1.mv1");
 }
 
 void VendingMachine::InitTransform(void)
 {
-	pos_ = { 10.0f,0.0f,0.0f };
-	scale_ = { 1.0f,1.0f,1.0f };
-	angle_ = { 0.0f,0.0f,0.0f };
+	pos_ = { -1220.190918f,0.000249f,-1000.381592f };
+	scale_ = { 0.7f,0.7f,0.7f };
+	angle_ = { 0.0f,90.0f * DX_PI_F / 180.0f,0.0f };
+
+	// サイズ変更
+	MV1SetScale(modelId_, scale_);
+	MV1SetRotationXYZ(modelId_, angle_);
+	
 }
 
 void VendingMachine::InitAnimation(void)

@@ -65,29 +65,31 @@ void ActorBase::LoadEnd(void)
 
 void ActorBase::Update(void)
 {
+	if (tag_ == TAG::PLAYER)
+	{
+		// プレイヤーの遅延回転処理
+		DelayRotate();
 
-	// プレイヤーの遅延回転処理
-	DelayRotate();
+		// 行列の合成(子, 親と指定すると親⇒子の順に適用される)
+		MATRIX mat = MatrixUtility::Multiplication(localAngle_, angle_);
 
-	// 行列の合成(子, 親と指定すると親⇒子の順に適用される)
-	MATRIX mat = MatrixUtility::Multiplication(localAngle_, angle_);
+		// 回転行列をモデルに反映
+		MV1SetRotationMatrix(modelId_, mat);
+		MV1SetRotationMatrix(ihenModelId_, mat);
 
-	// 回転行列をモデルに反映
-	MV1SetRotationMatrix(modelId_, mat);
-	MV1SetRotationMatrix(ihenModelId_, mat);
-
-	// プレイヤーの移動処理
-	Move();
+		// プレイヤーの移動処理
+		Move();
+	}
 
 	// 重力フラグがあるか？
 	if (isGravity_)
 	{
 		// 重力(加速度を速度に加算していく)
 		jumpPow_ -= 0.8f;
-	}
 
-	// プレイヤーの座標に移動量(速度、ジャンプ力)を加算する
-	pos_.y += jumpPow_;
+		// プレイヤーの座標に移動量(速度、ジャンプ力)を加算する
+		pos_.y += jumpPow_;
+	}
 
 	// モデルに座標を設定する
 	MV1SetPosition(modelId_, pos_);

@@ -12,14 +12,16 @@ Desuku::~Desuku()
 
 void Desuku::InitLoad(void)
 {
-	//modelId_ = MV1LoadModel("Data/object/Desuku/desuku4.mv1");
+	modelId_ = MV1LoadModel("Data/object/Desuku/desuku.mv1");
 }
 
 void Desuku::InitTransform(void)
 {
-	pos_ = { 0.0f,200.0f,0.0f };
-	scale_ = { 0.8f,0.8f,0.8f };
+	pos_ = { 678.352173f,0.000122f,-310.874786f };
+	scale_ = { 2.5f,2.5f,2.5f };
 	angle_ = { 0.0f,300.0f,0.0f };
+
+	MV1SetScale(modelId_, scale_);
 }
 
 void Desuku::InitAnimation(void)

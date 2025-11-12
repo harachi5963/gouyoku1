@@ -19,8 +19,8 @@ void Chair::InitLoad(void)
 
 void Chair::InitTransform(void)
 {
-	pos_ = { 700.0f,0.0f,0.0f };
-	scale_ = { 2.0f,2.0f,2.0f };
+	pos_ = { 710.069336f,0.000103f,-240.828400 };
+	scale_ = { 1.7f,1.7f,1.7f };
 	angle_ = { 0.0f,0.0f,0.0f };
 
 	// サイズ変更

@@ -11,6 +11,10 @@
 #include "../../Object/Actor/Object/Pc.h"
 #include "../../Object/Actor/Stage/Stage.h"
 #include "../../Object/Actor/Object/VendingMachine.h"
+#include "../../Object/Actor/Object/Basketball.h"
+#include "../../Object/Actor/Object/Soccerball.h"
+#include "../../Object/Actor/Object/Tenisuball.h"
+#include "../../Object/Actor/Object/Volleyball.h"
 #include "../../Object/Actor/Object/Door.h"
 #include "../../Object/Actor/Object/Door2.h"
 #include "../../Object/Actor/Object/Tirasi.h"
@@ -56,6 +60,10 @@ void GameScene::Load(void)
 	ActorBase* vendingMachine = new VendingMachine();	// 自販機を生成
 	ActorBase* door = new Door();						// ドアを生成
 	ActorBase* door2 = new Door2();						// ドアを生成
+	ActorBase* basketball = new Basketball();						// ドアを生成
+	ActorBase* soccerball = new Soccerball();						// ドアを生成
+	ActorBase* tenisuball = new Tenisuball();						// ドアを生成
+	ActorBase* volleyball = new Volleyball();						// ドアを生成
 	ActorBase* pc = new Pc();						// ドアを生成
 	ActorBase* tirasi = new Tirasi();						// チラシを生成
 	ActorBase* desuku1 = new Desuku();			//机を生成
@@ -66,6 +74,10 @@ void GameScene::Load(void)
 	allActor_.push_back(vendingMachine);
 	allActor_.push_back(door);
 	allActor_.push_back(door2);
+	allActor_.push_back(basketball);
+	allActor_.push_back(soccerball);
+	allActor_.push_back(tenisuball);
+	allActor_.push_back(volleyball);
 	allActor_.push_back(pc);
 	allActor_.push_back(tirasi);
 	allActor_.push_back(desuku1);
