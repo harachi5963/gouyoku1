@@ -20,6 +20,7 @@
 #include "../../Object/Actor/Object/Tirasi.h"
 #include "../../Object/Actor/Object/Desuku.h"
 #include "../../Object/Actor/Object/Chair.h"
+#include "../../Object/Actor/Object/Kasatate/Kasatate.h"
 
 #include "../../Utility/AsoUtility.h"
 #include "../../Input/InputManager.h"
@@ -68,6 +69,8 @@ void GameScene::Load(void)
 	ActorBase* tirasi = new Tirasi();						// チラシを生成
 	ActorBase* desuku1 = new Desuku();			//机を生成
 	ActorBase* chair1 = new Chair();
+	ActorBase* kasatate = new Kasatate();
+
 
 	// アクター配列に入れる
 	allActor_.push_back(player_);
@@ -82,6 +85,8 @@ void GameScene::Load(void)
 	allActor_.push_back(tirasi);
 	allActor_.push_back(desuku1);
 	allActor_.push_back(chair1);
+	allActor_.push_back(kasatate);
+
 
 	// カメラモード変更
 	camera_->SetFollow(player_);

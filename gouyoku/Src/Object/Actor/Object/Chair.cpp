@@ -13,8 +13,8 @@ Chair::~Chair()
 void Chair::InitLoad(void)
 {
 	tag_ = TAG::IHEN_OBJECT;
-	modelId_ = MV1LoadModel("Data/object/Chair/Chair2.mv1");
-	ihenModelId_ = MV1LoadModel("Data/object/Chair/Chair.mv1");
+	//modelId_ = MV1LoadModel("Data/object/Chair/Chair2.mv1");
+	//ihenModelId_ = MV1LoadModel("Data/object/Chair/Chair.mv1");
 }
 
 void Chair::InitTransform(void)
