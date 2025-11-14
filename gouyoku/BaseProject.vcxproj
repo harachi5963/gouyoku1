@@ -23,6 +23,8 @@
     <ClCompile Include="Src\Object\Actor\ActorBase.cpp" />
     <ClCompile Include="Src\Object\Actor\Enemy\Enemy.cpp" />
     <ClCompile Include="Src\Object\Actor\Object\Basketball.cpp" />
+    <ClCompile Include="Src\Object\Actor\Object\Kasatate\Kasatate.cpp" />
+    <ClCompile Include="Src\Object\Actor\Object\Projector.cpp" />
     <ClCompile Include="Src\Object\Actor\Object\Soccerball.cpp" />
     <ClCompile Include="Src\Object\Actor\Object\Tenisuball.cpp" />
     <ClCompile Include="Src\Object\Actor\Object\Volleyball.cpp" />
@@ -57,6 +59,8 @@
     <ClInclude Include="Src\Object\Actor\ActorBase.h" />
     <ClInclude Include="Src\Object\Actor\Enemy\Enemy.h" />
     <ClInclude Include="Src\Object\Actor\Object\Basketball.h" />
+    <ClInclude Include="Src\Object\Actor\Object\Kasatate\Kasatate.h" />
+    <ClInclude Include="Src\Object\Actor\Object\Projector.h" />
     <ClInclude Include="Src\Object\Actor\Object\Soccerball.h" />
     <ClInclude Include="Src\Object\Actor\Object\Tenisuball.h" />
     <ClInclude Include="Src\Object\Actor\Object\Volleyball.h" />
