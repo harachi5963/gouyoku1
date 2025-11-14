@@ -27,6 +27,7 @@
     <ClCompile Include="Src\Object\Actor\Object\Projector.cpp" />
     <ClCompile Include="Src\Object\Actor\Object\Soccerball.cpp" />
     <ClCompile Include="Src\Object\Actor\Object\Tenisuball.cpp" />
+    <ClCompile Include="Src\Object\Actor\Object\Tokei.cpp" />
     <ClCompile Include="Src\Object\Actor\Object\Volleyball.cpp" />
     <ClCompile Include="Src\Object\Actor\Object\Tirasi.cpp" />
     <ClCompile Include="Src\Scene\Gameclear\GameClear.cpp" />
@@ -63,6 +64,7 @@
     <ClInclude Include="Src\Object\Actor\Object\Projector.h" />
     <ClInclude Include="Src\Object\Actor\Object\Soccerball.h" />
     <ClInclude Include="Src\Object\Actor\Object\Tenisuball.h" />
+    <ClInclude Include="Src\Object\Actor\Object\Tokei.h" />
     <ClInclude Include="Src\Object\Actor\Object\Volleyball.h" />
     <ClInclude Include="Src\Object\Actor\Object\Tirasi.h" />
     <ClInclude Include="Src\Scene\Gameclear\GameClear.h" />

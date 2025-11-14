@@ -22,6 +22,7 @@
 #include "../../Object/Actor/Object/Chair.h"
 #include "../../Object/Actor/Object/Kasatate/Kasatate.h"
 #include "../../Object/Actor/Object/Projector.h"
+#include "../../Object/Actor/Object/Tokei.h"
 
 #include "../../Utility/AsoUtility.h"
 #include "../../Input/InputManager.h"
@@ -72,6 +73,8 @@ void GameScene::Load(void)
 	ActorBase* chair1 = new Chair();
 	ActorBase* kasatate = new Kasatate();
 	ActorBase* projector = new Projector();							//プロジェクター
+	ActorBase* tokei = new Tokei();
+
 
 
 
@@ -90,6 +93,7 @@ void GameScene::Load(void)
 	allActor_.push_back(chair1);
 	allActor_.push_back(kasatate);
 	allActor_.push_back(projector);
+	allActor_.push_back(tokei);
 
 
 
