@@ -16,14 +16,14 @@ Soccerball::~Soccerball()
 void Soccerball::InitLoad(void)
 {
 	tag_ = TAG::IHEN_OBJECT;
-	//modelId_ = MV1LoadModel("Data/object/Ball/soccerball.mv1");
-	//ihenModelId_ = MV1LoadModel("Data/object/Ball/SoccerballAnim.mv1");
+	modelId_ = MV1LoadModel("Data/object/Ball/soccerball.mv1");
+	ihenModelId_ = MV1LoadModel("Data/object/Ball/SoccerballAnim.mv1");
 }
 
 void Soccerball::InitTransform(void)
 {
-	pos_ = { 150.0f,0.0f,0.0f };
-	scale_ = { 1.0f,1.0f,1.0f };
+	pos_ = { 150.0f,50.0f,0.0f };
+	scale_ = { 0.3f,0.3f,0.3f };
 	angle_ = { 0.0f,0.0f,0.0f };
 
 	// サイズ変更

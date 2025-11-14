@@ -13,13 +13,13 @@ Tenisuball::~Tenisuball()
 void Tenisuball::InitLoad(void)
 {
 	tag_ = TAG::IHEN_OBJECT;
-	//modelId_ = MV1LoadModel("Data/object/Ball/tenisuball.mv1");
+	modelId_ = MV1LoadModel("Data/object/Ball/tenisuball.mv1");
 }
 
 void Tenisuball::InitTransform(void)
 {
 	pos_ = { 100.0f,30.0f,0.0f };
-	scale_ = { 0.5f,0.5f,0.5f };
+	scale_ = { 0.15f,0.15f,0.15f };
 	angle_ = { 0.0f,0.0f,0.0f };
 
 	// サイズ変更

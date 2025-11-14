@@ -13,7 +13,7 @@ Volleyball::~Volleyball()
 void Volleyball::InitLoad(void)
 {
 	tag_ = TAG::IHEN_OBJECT;
-	modelId_ = MV1LoadModel("Data/object/Ball/volleyball_1.mv1");
+	//modelId_ = MV1LoadModel("Data/object/Ball/volleyball_1.mv1");
 }
 
 void Volleyball::InitTransform(void)
