@@ -233,6 +233,9 @@ void GameScene::isDoorCollision(void)
 
 void GameScene::isDoorOpen(void)
 {
+	//異変の数検索用
+	int ihenNum = 0;
+
 	// 全てのオブジェクトを回す
 	for (auto actor : allActor_)
 	{
@@ -241,9 +244,27 @@ void GameScene::isDoorOpen(void)
 			// 異変オブジェクトじゃないのでスキップ
 			continue;
 		}
-		
+		ihenNum++;
 		// 異変オブジェクトを発見
-		actor->SetIhen(true);
+		/*actor->SetIhen(true);*/
+	}
+
+	int ihenact = GetRand(ihenNum - 1);
+	ihenNum = 0;
+	for (auto actor : allActor_)
+	{
+		if (actor->GetTag() != ActorBase::TAG::IHEN_OBJECT)
+		{
+			// 異変オブジェクトじゃないのでスキップ
+			continue;
+		}
+		ihenNum++;
+		if (ihenNum == ihenact)
+		{
+			actor->SetIhen(true);
+		}
+		// 異変オブジェクトを発見
+		/*actor->SetIhen(true);*/
 	}
 }
 
