@@ -2,8 +2,8 @@
 
 #include <DxLib.h>
 
-
 #include "../../Input/InputManager.h"
+#include "../../Audio/AudioManager.h"
 #include "../SceneManager.h"
 #include "../../Application.h"
 
@@ -17,17 +17,6 @@ TitleScene::~TitleScene(void)
 
 void TitleScene::Init(void)
 {
-	titleText_eta = LoadGraph("Data/Image/title_text_eta.png");
-	titleText_guti = LoadGraph("Data/Image/title_text_kuti.png");
-	titleText_ki_k = LoadGraph("Data/Image/title_text_ki_k.png");
-	titleText_de_k = LoadGraph("Data/Image/title_text_de_k.png");
-	titleText_e = LoadGraph("Data/Image/title_text_e.png");
-	titleText_hara = LoadGraph("Data/Image/title_text_hara.png");
-	titleText_ta = LoadGraph("Data/Image/title_text_ta.png");
-	titleText_naka = LoadGraph("Data/Image/title_text_naka.png");
-	titleText_naru = LoadGraph("Data/Image/title_text_naru.png");
-	title_Back = LoadGraph("Data/Image/Title_Background.png");
-
 	kitime_ = 0;
 	change_ki_Time_ = 300;	// Ø‚è‘Ö‚¦‚éŽžŠÔ
 	etatime_ = 0;
@@ -45,10 +34,24 @@ void TitleScene::Init(void)
 
 void TitleScene::Load(void)
 {
+	titleText_eta = LoadGraph("Data/Image/title_text_eta.png");
+	titleText_guti = LoadGraph("Data/Image/title_text_kuti.png");
+	titleText_ki_k = LoadGraph("Data/Image/title_text_ki_k.png");
+	titleText_de_k = LoadGraph("Data/Image/title_text_de_k.png");
+	titleText_e = LoadGraph("Data/Image/title_text_e.png");
+	titleText_hara = LoadGraph("Data/Image/title_text_hara.png");
+	titleText_ta = LoadGraph("Data/Image/title_text_ta.png");
+	titleText_naka = LoadGraph("Data/Image/title_text_naka.png");
+	titleText_naru = LoadGraph("Data/Image/title_text_naru.png");
+	title_Back = LoadGraph("Data/Image/Title_Background.png");
+
+	AudioManager::GetInstance()->LoadSceneSound(LoadScene::TITLE);
 }
 
 void TitleScene::LoadEnd(void)
 {
+	AudioManager::GetInstance()->PlayBGM(SoundID::BGM_TITLE);
+
 	Init();
 }
 
@@ -253,6 +256,8 @@ void TitleScene::Release(void)
 	DeleteGraph(titleText_ta);
 	DeleteGraph(titleText_naka);
 	DeleteGraph(titleText_naru);
+
+	AudioManager::GetInstance()->DeleteSceneSound(LoadScene::TITLE);
 }
 
 void TitleScene::toNextScene(void)

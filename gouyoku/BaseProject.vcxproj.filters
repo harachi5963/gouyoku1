@@ -147,7 +147,14 @@
     <ClCompile Include="Src\Object\Actor\Object\Projector.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="Src\Object\Actor\Object\Tokei.cpp">
+=======
+    <ClCompile Include="Src\Audio\AudioManager.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Audio\SoundTable.cpp">
+>>>>>>> origin/anndou
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -254,7 +261,14 @@
     <ClInclude Include="Src\Object\Actor\Object\Projector.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="Src\Object\Actor\Object\Tokei.h">
+=======
+    <ClInclude Include="Src\Audio\AudioManager.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Audio\SoundTable.h">
+>>>>>>> origin/anndou
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

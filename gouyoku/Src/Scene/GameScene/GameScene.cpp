@@ -27,6 +27,7 @@
 #include "../../Utility/AsoUtility.h"
 #include "../../Input/InputManager.h"
 #include "../SceneManager.h"
+#include "../../Audio/AudioManager.h"
 
 GameScene::GameScene(void)
 {
@@ -95,8 +96,6 @@ void GameScene::Load(void)
 	allActor_.push_back(projector);
 	allActor_.push_back(tokei);
 
-
-
 	// カメラモード変更
 	camera_->SetFollow(player_);
 	camera_->ChangeMode(Camera::MODE::FOLLOW);
@@ -110,6 +109,8 @@ void GameScene::Load(void)
 		// 読み込み
 		actor->Load();
 	}
+
+	AudioManager::GetInstance()->LoadSceneSound(LoadScene::GAME);
 }
 
 void GameScene::LoadEnd(void)
@@ -126,6 +127,8 @@ void GameScene::LoadEnd(void)
 		// 読み込み
 		actor->LoadEnd();
 	}
+
+	AudioManager::GetInstance()->PlayBGM(SoundID::BGM_BATTLE);
 }
 
 void GameScene::Update(void)
@@ -189,6 +192,7 @@ void GameScene::Release(void)
 
 	// 配列をクリア
 	allActor_.clear();
+	AudioManager::GetInstance()->DeleteSceneSound(LoadScene::GAME);
 }
 
 void GameScene::isDoorCollision(void)
