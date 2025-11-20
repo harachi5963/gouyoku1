@@ -18,7 +18,7 @@ void Desuku::InitLoad(void)
 void Desuku::InitTransform(void)
 {
 	pos_ = { 678.352173f,0.000122f,-310.874786f };
-	scale_ = { 2.5f,2.5f,2.5f };
+	scale_ = { 5.0f,2.5f,2.5f };
 	angle_ = { 0.0f,300.0f,0.0f };
 
 	MV1SetScale(modelId_, scale_);
