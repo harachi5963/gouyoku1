@@ -41,6 +41,7 @@ void AudioManager::LoadSceneSound(LoadScene scene)
 	case LoadScene::SYSTEM: table = &SoundTable_System::Table; break;
 	case LoadScene::TITLE: table = &SoundTable_Title::Table; break;
 	case LoadScene::GAME:  table = &SoundTable_Game::Table; break;
+	case LoadScene::CLEAR:  table = &SoundTable_Clear::Table; break;
 	}
 
 	// 存在しないテーブルを選んでいたら処理しない
@@ -65,6 +66,7 @@ void AudioManager::DeleteSceneSound(LoadScene scene)
 	case LoadScene::SYSTEM: table = &SoundTable_System::Table; break;
 	case LoadScene::TITLE: table = &SoundTable_Title::Table; break;
 	case LoadScene::GAME:  table = &SoundTable_Game::Table; break;
+	case LoadScene::CLEAR:  table = &SoundTable_Clear::Table; break;
 	}
 
 	// 存在しないテーブルを選んでいたら処理しない

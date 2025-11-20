@@ -32,3 +32,12 @@ namespace SoundTable_Game
 		{ SoundID::SE_ATTACK, "Data/Sound/SE/attack.wav" },
 	};
 }
+
+// ƒNƒŠƒA‰æ–Ê—p
+namespace SoundTable_Clear
+{
+	static const std::unordered_map<SoundID, std::string> Table =
+	{
+		{ SoundID::BGM_CLEAR, "Data/Sound/maou_bgm_healing16.mp3" },
+	};
+}

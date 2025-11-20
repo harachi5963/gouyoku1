@@ -3,6 +3,7 @@
 #include "../SceneManager.h"
 #include "../../Application.h"
 #include "../../Input/InputManager.h"
+#include "../../Audio/AudioManager.h"
 
 ClearScene::ClearScene(void)
 {
@@ -23,10 +24,13 @@ void ClearScene::Init(void)
 
 void ClearScene::Load(void)
 {
+	AudioManager::GetInstance()->LoadSceneSound(LoadScene::CLEAR);
 }
 
 void ClearScene::LoadEnd(void)
 {
+	AudioManager::GetInstance()->PlayBGM(SoundID::BGM_CLEAR);
+
 	Init();
 }
 
@@ -54,6 +58,8 @@ void ClearScene::Draw(void)
 void ClearScene::Release(void)
 {
 	DeleteGraph(gameClearImgId_);
+
+	AudioManager::GetInstance()->DeleteSceneSound(LoadScene::CLEAR);
 }
 
 void ClearScene::toNextScene(void)
