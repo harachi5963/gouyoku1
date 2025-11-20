@@ -18,6 +18,7 @@
 #include "../../Object/Actor/Object/Door.h"
 #include "../../Object/Actor/Object/Door2.h"
 #include "../../Object/Actor/Object/Tirasi.h"
+#include "../../Object/Actor/Object/Calender.h"
 #include "../../Object/Actor/Object/Desuku.h"
 #include "../../Object/Actor/Object/Chair.h"
 
@@ -65,9 +66,11 @@ void GameScene::Load(void)
 	ActorBase* tenisuball = new Tenisuball();						// ドアを生成
 	ActorBase* volleyball = new Volleyball();						// ドアを生成
 	ActorBase* pc = new Pc();						// ドアを生成
-	ActorBase* tirasi = new Tirasi();						// チラシを生成
+	ActorBase* tirasi = new Tirasi();			// チラシを生成
+	ActorBase* calender = new Calender();
 	ActorBase* desuku1 = new Desuku();			//机を生成
 	ActorBase* chair1 = new Chair();
+	
 
 	// アクター配列に入れる
 	allActor_.push_back(player_);
@@ -80,6 +83,7 @@ void GameScene::Load(void)
 	allActor_.push_back(volleyball);
 	allActor_.push_back(pc);
 	allActor_.push_back(tirasi);
+	allActor_.push_back(calender);
 	allActor_.push_back(desuku1);
 	allActor_.push_back(chair1);
 
