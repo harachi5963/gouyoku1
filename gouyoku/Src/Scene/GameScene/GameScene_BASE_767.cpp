@@ -18,7 +18,6 @@
 #include "../../Object/Actor/Object/Door.h"
 #include "../../Object/Actor/Object/Door2.h"
 #include "../../Object/Actor/Object/Tirasi.h"
-#include "../../Object/Actor/Object/Calender.h"
 #include "../../Object/Actor/Object/Desuku.h"
 #include "../../Object/Actor/Object/Chair.h"
 #include "../../Object/Actor/Object/Kasatate/Kasatate.h"
@@ -69,54 +68,17 @@ void GameScene::Load(void)
 	ActorBase* soccerball = new Soccerball();						// ドアを生成
 	ActorBase* tenisuball = new Tenisuball();						// ドアを生成
 	ActorBase* volleyball = new Volleyball();						// ドアを生成
-	ActorBase* calender = new Calender();
 	ActorBase* pc = new Pc();										// ドアを生成
 	ActorBase* tirasi = new Tirasi();								// チラシを生成
+	ActorBase* desuku1 = new Desuku();								//机を生成
+	ActorBase* chair1 = new Chair();
 	ActorBase* kasatate = new Kasatate();
 	ActorBase* projector = new Projector();							//プロジェクター
 	ActorBase* tokei = new Tokei();
 
-	//机を生成
-	Desuku* desuku1 = new Desuku();
-	desuku1->SetDesuku(
-		"Data/object/Desuku/desuku.mv1",
-		{ 1195.352173f,0.000122f,-340.0f },
-		{ 5.0f, 2.5f, 3.5f },
-		{ 0.0f,300.0f,0.0f }
-	);
 
-	//机を生成
-	Desuku* desuku2 = new Desuku();
-	desuku2->SetDesuku(
-		"Data/object/Desuku/desuku.mv1",
-		{ 895.352173f,0.000122f,-340.0f },
-		{ 5.5f, 2.5f, 3.5f },
-	    { 0.0f,300.0f,0.0f }
-	);
-	//机を生成
-	Desuku* desuku3 = new Desuku();
-	desuku3->SetDesuku(
-		"Data/object/Desuku/desuku.mv1",
-		{ 595.352173f,0.000122f,-340.0f },
-		{ 5.0f, 2.5f, 3.5f },
-		{ 0.0f,300.0f,0.0f }
-	);
-	//椅子を生成
-	Chair* chair1 = new Chair();
-	chair1->SetChair(
-		"Data/object/Chair/Chair2.mv1",
-		{ 710.069336f,0.000103f,-240.8284 },
-		{ 1.7f,1.7f,1.7f },
-		{ 0.0f,0.0f,0.0f }
-	);
-	//椅子を生成
-	Chair* chair2 = new Chair();
-	chair2->SetChair(
-		"Data/object/Chair/Chair2.mv1",
-		{ 810.069336f,0.000103f,-240.8284 },
-		{ 1.7f,1.7f,1.7f },
-		{ 0.0f,0.0f,0.0f }
-	);
+
+
 	// アクター配列に入れる
 	allActor_.push_back(player_);
 	allActor_.push_back(vendingMachine);
@@ -128,17 +90,11 @@ void GameScene::Load(void)
 	allActor_.push_back(volleyball);
 	allActor_.push_back(pc);
 	allActor_.push_back(tirasi);
-	allActor_.push_back(calender);
 	allActor_.push_back(desuku1);
 	allActor_.push_back(chair1);
 	allActor_.push_back(kasatate);
 	allActor_.push_back(projector);
 	allActor_.push_back(tokei);
-	allActor_.push_back(desuku1);
-	allActor_.push_back(desuku2);
-	allActor_.push_back(desuku3);
-	allActor_.push_back(chair1);
-	allActor_.push_back(chair2);
 
 	// カメラモード変更
 	camera_->SetFollow(player_);
@@ -295,9 +251,6 @@ void GameScene::isDoorCollision(void)
 
 void GameScene::isDoorOpen(void)
 {
-	//異変の数検索用
-	int ihenNum = 0;
-
 	// 全てのオブジェクトを回す
 	for (auto actor : allActor_)
 	{
@@ -306,27 +259,9 @@ void GameScene::isDoorOpen(void)
 			// 異変オブジェクトじゃないのでスキップ
 			continue;
 		}
-		ihenNum++;
+		
 		// 異変オブジェクトを発見
-		/*actor->SetIhen(true);*/
-	}
-
-	int ihenact = GetRand(ihenNum - 1);
-	ihenNum = 0;
-	for (auto actor : allActor_)
-	{
-		if (actor->GetTag() != ActorBase::TAG::IHEN_OBJECT)
-		{
-			// 異変オブジェクトじゃないのでスキップ
-			continue;
-		}
-		ihenNum++;
-		if (ihenNum == ihenact)
-		{
-			actor->SetIhen(true);
-		}
-		// 異変オブジェクトを発見
-		/*actor->SetIhen(true);*/
+		actor->SetIhen(true);
 	}
 }
 

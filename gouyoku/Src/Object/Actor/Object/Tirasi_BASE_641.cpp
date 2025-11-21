@@ -12,16 +12,14 @@ Tirasi::~Tirasi()
 
 void Tirasi::InitLoad(void)
 {
-	tag_ = TAG::IHEN_OBJECT;
 	modelId_ = MV1LoadModel("Data/object/tirasi/tirasi.mv1");
-	ihenModelId_ = MV1LoadModel("Data/object/tirasi/tirasiihenn.mv1");
+	ihenModelId_ = MV1LoadModel("Data/object/tirasi/zigoku.mv1");
 }
 
 void Tirasi::InitTransform(void)
 {
-
-	pos_ = { -664.682190f,-0.000066f,846.526855f };
-	scale_ = { 1.0f,1.0f,1.0f };
+	pos_ = { 96.0f,0.0f,-10.0f };
+	scale_ = { 0.5f,0.5f,0.5f };
 	angle_ = { 0.0f,0.0f,0.0f };
 
 	// サイズ変更

@@ -76,6 +76,7 @@ void GameScene::Load(void)
 	ActorBase* projector = new Projector();							//プロジェクター
 	ActorBase* tokei = new Tokei();
 
+<<<<<<< HEAD
 	//机を生成
 	Desuku* desuku1 = new Desuku();
 	desuku1->SetDesuku(
@@ -117,6 +118,8 @@ void GameScene::Load(void)
 		{ 1.7f,1.7f,1.7f },
 		{ 0.0f,0.0f,0.0f }
 	);
+=======
+>>>>>>> 5c28a288f0e1feaa67705f88163160554c98cb02
 	// アクター配列に入れる
 	allActor_.push_back(player_);
 	allActor_.push_back(vendingMachine);
@@ -128,9 +131,12 @@ void GameScene::Load(void)
 	allActor_.push_back(volleyball);
 	allActor_.push_back(pc);
 	allActor_.push_back(tirasi);
+<<<<<<< HEAD
+=======
 	allActor_.push_back(calender);
 	allActor_.push_back(desuku1);
 	allActor_.push_back(chair1);
+>>>>>>> 5c28a288f0e1feaa67705f88163160554c98cb02
 	allActor_.push_back(kasatate);
 	allActor_.push_back(projector);
 	allActor_.push_back(tokei);

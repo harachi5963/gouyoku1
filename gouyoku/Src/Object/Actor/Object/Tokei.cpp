@@ -42,7 +42,7 @@ void Tokei::InitTransform(void)
 void Tokei::InitAnimation(void)
 {
 	pos_ = { 1016.0f,260.0f,850.0f };
-	scale_ = { 0.1f,0.1f,0.1f };
+	scale_ = { 0.0005f,0.0005f,0.0005f };
 	angle_ = { 0.0f,300.0f,0.0f };
 
 	// サイズ変更
