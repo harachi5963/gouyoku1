@@ -129,8 +129,6 @@ void GameScene::Load(void)
 	allActor_.push_back(pc);
 	allActor_.push_back(tirasi);
 	allActor_.push_back(calender);
-	allActor_.push_back(desuku1);
-	allActor_.push_back(chair1);
 	allActor_.push_back(kasatate);
 	allActor_.push_back(projector);
 	allActor_.push_back(tokei);
