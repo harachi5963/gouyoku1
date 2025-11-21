@@ -18,8 +18,8 @@ void Tirasi::InitLoad(void)
 
 void Tirasi::InitTransform(void)
 {
-	pos_ = { 96.0f,0.0f,-10.0f };
-	scale_ = { 0.5f,0.5f,0.5f };
+	pos_ = { -108.0f,75.0f,-386.5f };
+	scale_ = { 0.3f,0.3f,0.f };
 	angle_ = { 0.0f,0.0f,0.0f };
 
 	// サイズ変更

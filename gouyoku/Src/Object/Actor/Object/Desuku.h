@@ -10,6 +10,7 @@ public:
 public:
 
 	// XV
+	void SetDesuku(const TCHAR* path, VECTOR pos, VECTOR scl, VECTOR angle);
 	void Update(void) override;
 
 	// •`‰æ
