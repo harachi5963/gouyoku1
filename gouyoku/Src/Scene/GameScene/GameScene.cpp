@@ -80,7 +80,7 @@ void GameScene::Load(void)
 	Desuku* desuku1 = new Desuku();
 	desuku1->SetDesuku(
 		"Data/object/Desuku/desuku.mv1",
-		{ 1195.352173f,0.000122f,-340.0f },
+		{ 1195.352f,0.000122f,-340.0f },
 		{ 5.0f, 2.5f, 3.5f },
 		{ 0.0f,300.0f,0.0f }
 	);
@@ -89,7 +89,7 @@ void GameScene::Load(void)
 	Desuku* desuku2 = new Desuku();
 	desuku2->SetDesuku(
 		"Data/object/Desuku/desuku.mv1",
-		{ 895.352173f,0.000122f,-340.0f },
+		{ 895.352f,0.000122f,-340.0f },
 		{ 5.5f, 2.5f, 3.5f },
 	    { 0.0f,300.0f,0.0f }
 	);
@@ -97,8 +97,16 @@ void GameScene::Load(void)
 	Desuku* desuku3 = new Desuku();
 	desuku3->SetDesuku(
 		"Data/object/Desuku/desuku.mv1",
-		{ 595.352173f,0.000122f,-340.0f },
+		{ 595.352f,0.000122f,-340.0f },
 		{ 5.0f, 2.5f, 3.5f },
+		{ 0.0f,300.0f,0.0f }
+	);
+	//Š÷‚ð¶¬
+	Desuku* desuku4 = new Desuku();
+	desuku4->SetDesuku(
+		"Data/object/Desuku/desuku.mv1",
+		{ 305.352f,0.000122f,-190.0f },
+		{ 1.5f, 2.5f, 1.5f },
 		{ 0.0f,300.0f,0.0f }
 	);
 	//ˆÖŽq‚ð¶¬
@@ -113,7 +121,7 @@ void GameScene::Load(void)
 	Chair* chair2 = new Chair();
 	chair2->SetChair(
 		"Data/object/Chair/Chair2.mv1",
-		{ 810.069336f,0.000103f,-240.8284 },
+		{ 910.069336f,0.000103f,-240.8284 },
 		{ 1.7f,1.7f,1.7f },
 		{ 0.0f,0.0f,0.0f }
 	);
@@ -121,7 +129,7 @@ void GameScene::Load(void)
 	Chair* chair3 = new Chair();
 	chair3->SetChair(
 		"Data/object/Chair/Chair2.mv1",
-		{ 810.069336f,0.000103f,-240.8284 },
+		{ 1050.069336f,0.000103f,-240.8284 },
 		{ 1.7f,1.7f,1.7f },
 		{ 0.0f,0.0f,0.0f }
 	);
@@ -143,6 +151,7 @@ void GameScene::Load(void)
 	allActor_.push_back(desuku1);
 	allActor_.push_back(desuku2);
 	allActor_.push_back(desuku3);
+	allActor_.push_back(desuku4);
 	allActor_.push_back(chair1);
 	allActor_.push_back(chair2);
 	allActor_.push_back(chair3);
