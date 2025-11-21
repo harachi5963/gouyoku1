@@ -38,6 +38,6 @@ namespace SoundTable_Clear
 {
 	static const std::unordered_map<SoundID, std::string> Table =
 	{
-		{ SoundID::BGM_CLEAR, "Data/Sound/maou_bgm_healing16.mp3" },
+		{ SoundID::BGM_CLEAR, "Data/Sound/hareruya.mp3" },
 	};
 }
