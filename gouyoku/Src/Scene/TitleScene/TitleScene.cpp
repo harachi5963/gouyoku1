@@ -2,8 +2,8 @@
 
 #include <DxLib.h>
 
-
 #include "../../Input/InputManager.h"
+#include "../../Audio/AudioManager.h"
 #include "../SceneManager.h"
 #include "../../Application.h"
 
@@ -17,41 +17,55 @@ TitleScene::~TitleScene(void)
 
 void TitleScene::Init(void)
 {
-	titleText_etaro = LoadGraph("Data/Image/title_text_etaro.png");
-	titleText_ki = LoadGraph("Data/Image/title_text_ki.png");
-	titleText_ki_k = LoadGraph("Data/Image/title_text_ki_k.png");
-	titleText_de = LoadGraph("Data/Image/title_text_de.png");
-	titleText_de_k = LoadGraph("Data/Image/title_text_de_k.png");
-	titleText_e = LoadGraph("Data/Image/title_text_e.png");
-	title_Back = LoadGraph("Data/Image/Title_Background.png");
-
 	kitime_ = 0;
-	change_ki_Time_ = 30;	// 切り替える時間
+	change_ki_Time_ = 300;	// 切り替える時間
+	etatime_ = 0;
+	change_eta_Time_ = 200;	// 切り替える時間
 	detime_ = 0;
-	change_de_Time_ = 50;	// 切り替える時間
+	change_de_Time_ = 307;	// 切り替える時間
+	gutitime_ = 0;
+	change_guti_Time_ = 70;	// 切り替える時間
 
-	text_ki_Change_ = false;	// キを変える
+	text_ki_Change_ = false;	// 消を変える
+	text_eta_Change_ = false;	// えたを変える
 	text_de_Change_ = De::DE_KANJI;
+	text_guti_Change_ = Guti::TA;
 }
 
 void TitleScene::Load(void)
 {
+	titleText_eta = LoadGraph("Data/Image/title_text_eta.png");
+	titleText_guti = LoadGraph("Data/Image/title_text_kuti.png");
+	titleText_ki_k = LoadGraph("Data/Image/title_text_ki_k.png");
+	titleText_de_k = LoadGraph("Data/Image/title_text_de_k.png");
+	titleText_e = LoadGraph("Data/Image/title_text_e.png");
+	titleText_hara = LoadGraph("Data/Image/title_text_hara.png");
+	titleText_ta = LoadGraph("Data/Image/title_text_ta.png");
+	titleText_naka = LoadGraph("Data/Image/title_text_naka.png");
+	titleText_naru = LoadGraph("Data/Image/title_text_naru.png");
+	title_Back = LoadGraph("Data/Image/Title_Background.png");
+
+	AudioManager::GetInstance()->LoadSceneSound(LoadScene::TITLE);
 }
 
 void TitleScene::LoadEnd(void)
 {
+	AudioManager::GetInstance()->PlayBGM(SoundID::BGM_TITLE);
+
 	Init();
 }
 
 void TitleScene::Update(void)
 {
-	kitime_++;		// 消とキを切り替える時間
-	detime_++;		// 出とデを切り替える時間
+	kitime_++;		// 消と仲を切り替える時間
+	etatime_++;		// えたとなるを切り替える時間
+	detime_++;		// 出と原を切り替える時間
+	gutitime_++;	// 口と田を切り替える時間
 
 	// 切り替える時間に到達したら
 	if (kitime_ > change_ki_Time_)
 	{
-		// 今がキなのか？
+		// 今が仲なのか？
 		if (text_ki_Change_)
 		{
 			// 消に変更
@@ -59,14 +73,53 @@ void TitleScene::Update(void)
 		}
 		else
 		{
-			// キに変更
+			// 仲に変更
 			text_ki_Change_ = true;
 		}
 
-		// 次に切り替える時間を再設定
-		change_ki_Time_ = GetRand(100);
+		if (text_ki_Change_)
+		{
+			// 次に切り替える時間を再設定
+			change_ki_Time_ = GetRand(100);
+		}
+		else
+		{
+			// 次に切り替える時間を再設定
+			change_ki_Time_ = GetRand(1200);
+		}
+
 		// 計測用の時間をリセット
 		kitime_ = 0;
+	}
+
+	// 切り替える時間に到達したら
+	if (etatime_ > change_eta_Time_)
+	{
+		// 今がえたなのか？
+		if (text_eta_Change_)
+		{
+			// えたに変更
+			text_eta_Change_ = false;
+		}
+		else
+		{
+			// なるに変更
+			text_eta_Change_ = true;
+		}
+
+		if (text_eta_Change_)
+		{
+			// 次に切り替える時間を再設定
+			change_eta_Time_ = GetRand(100);
+		}
+		else
+		{
+			// 次に切り替える時間を再設定
+			change_eta_Time_ = GetRand(1300);
+		}
+
+		// 計測用の時間をリセット
+		etatime_ = 0;
 	}
 
 	// 切り替える時間に到達したら
@@ -77,20 +130,45 @@ void TitleScene::Update(void)
 		switch (de)
 		{
 		case 0:
-			text_de_Change_ = De::DE_KANA;
+			text_de_Change_ = De::DE_HARA;
+			// 次に切り替える時間を再設定
+			change_de_Time_ = GetRand(100);
 			break;
 		case 1:
 			text_de_Change_ = De::DE_KANJI;
+			// 次に切り替える時間を再設定
+			change_de_Time_ = GetRand(100);
 			break;
 		case 2:
 			text_de_Change_ = De::E;
+			// 次に切り替える時間を再設定
+			change_de_Time_ = GetRand(100);
+			break;
+		}
+
+		// 計測用の時間をリセット
+		detime_ = 0;
+	}
+
+	// 切り替える時間に到達したら
+	if (gutitime_ > change_guti_Time_)
+	{
+		int guti = GetRand(2);
+
+		switch (guti)
+		{
+		case 0:
+			text_guti_Change_ = Guti::TA;
+			break;
+		case 1:
+			text_guti_Change_ = Guti::GUTI_KANJI;
 			break;
 		}
 
 		// 次に切り替える時間を再設定
-		change_de_Time_ = GetRand(100);
+		change_guti_Time_ = GetRand(100);
 		// 計測用の時間をリセット
-		detime_ = 0;
+		gutitime_ = 0;
 	}
 
 	//次のシーンへ遷移する
@@ -102,14 +180,24 @@ void TitleScene::Draw(void)
 	//タイトル背景の描画
 	DrawRotaGraph(500, 250, 1.0f, 0.0, title_Back, true);
 
-	//文字を描画
-	DrawRotaGraph(500, 250, 0.5f, 0.0, titleText_etaro, true);
+	// えたとなるをフラグで描画を切り替える
+	if (text_eta_Change_)
+	{
+		// 消 えた 出口
+		DrawRotaGraph(500, 250, 0.5f, 0.0, titleText_naru, true);
+	}
+	else
+	{
+		// 消 なる 出口
+		DrawRotaGraph(500, 250, 0.5f, 0.0, titleText_eta, true);
+	}
 
-	// 消とキをフラグで描画を切り替える
+
+	// 消と仲をフラグで描画を切り替える
 	if (text_ki_Change_)
 	{
-		// キ えた出口
-		DrawRotaGraph(500, 250, 0.5f, 0.0, titleText_ki, true);
+		// 仲 えた出口
+		DrawRotaGraph(500, 250, 0.5f, 0.0, titleText_naka, true);
 	}
 	else
 	{
@@ -119,8 +207,8 @@ void TitleScene::Draw(void)
 
 	switch (text_de_Change_)
 	{
-	case TitleScene::De::DE_KANA:
-		DrawRotaGraph(500, 250, 0.5f, 0.0, titleText_de, true);
+	case TitleScene::De::DE_HARA:
+		DrawRotaGraph(500, 250, 0.5f, 0.0, titleText_hara, true);
 		break;
 	case TitleScene::De::DE_KANJI:
 		DrawRotaGraph(500, 250, 0.5f, 0.0, titleText_de_k, true);
@@ -129,6 +217,16 @@ void TitleScene::Draw(void)
 		DrawRotaGraph(500, 250, 0.5f, 0.0, titleText_e, true);
 		break;
 	default:
+		break;
+	}
+
+	switch (text_guti_Change_)
+	{
+	case TitleScene::Guti::TA:
+		DrawRotaGraph(500, 250, 0.5f, 0.0, titleText_guti, true);
+		break;
+	case TitleScene::Guti::GUTI_KANJI:
+		DrawRotaGraph(500, 250, 0.5f, 0.0, titleText_ta, true);
 		break;
 	}
 
@@ -147,12 +245,19 @@ void TitleScene::Draw(void)
 
 void TitleScene::Release(void)
 {
-	DeleteGraph(titleText_etaro);
+	DeleteGraph(titleText_eta);
+	DeleteGraph(titleText_guti);
 	DeleteGraph(titleText_ki);
 	DeleteGraph(titleText_ki_k);
 	DeleteGraph(titleText_de);
 	DeleteGraph(titleText_de_k);
 	DeleteGraph(titleText_e);
+	DeleteGraph(titleText_hara);
+	DeleteGraph(titleText_ta);
+	DeleteGraph(titleText_naka);
+	DeleteGraph(titleText_naru);
+
+	AudioManager::GetInstance()->DeleteSceneSound(LoadScene::TITLE);
 }
 
 void TitleScene::toNextScene(void)
@@ -162,6 +267,6 @@ void TitleScene::toNextScene(void)
 	if (InputManager::GetInstance()->IsTrgUp(KEY_INPUT_SPACE))
 	{
 		//ゲームシーンへ
-		SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::GAME);
+		SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::CLEAR);
 	}
 }

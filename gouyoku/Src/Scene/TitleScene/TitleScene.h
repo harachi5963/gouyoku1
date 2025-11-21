@@ -5,9 +5,20 @@ class TitleScene : public SceneBase
 {
 	enum class De
 	{
-		DE_KANA,	// デ
+		DE_HARA,	// 原
 		DE_KANJI,	// 出
 		E,			// 江
+	};
+
+	enum class Guti
+	{
+		TA,				// 田
+		GUTI_KANJI,		// 口
+	};
+
+	enum class Eta
+	{
+		NARU,			//なる
 	};
 
 public:
@@ -26,19 +37,30 @@ public:
 
 private:
 
-	int titleText_etaro;	// 　えた　口
+	int titleText_eta;	    // 　えた　
+	int titleText_guti;	    // 　　　　口　
 	int titleText_ki_k;		// 消
 	int titleText_ki;		// キ
 	int titleText_de_k;		// 　　　出　
 	int titleText_de;		// 　　　デ
 	int titleText_e;		// 　　　江
-	int title_Back;		//タイトルの背景
+	int titleText_hara;		//		 原
+	int titleText_ta;		//		 　田
+	int titleText_naka;		// 仲
+	int titleText_naru;		//　 なる
+	int title_Back;			//タイトルの背景
 
-	int kitime_;				// 時間計測用
+	int kitime_;			// 時間計測用
 	int change_ki_Time_;	// 切り替える時間
-	int detime_;				// 時間計測用
+	int etatime_;			// 時間計測用
+	int change_eta_Time_;	// 切り替える時間
+	int detime_;			// 時間計測用
 	int change_de_Time_;	// 切り替える時間
+	int gutitime_;			// 時間計測用
+	int change_guti_Time_;	// 切り替える時間
 
-	bool text_ki_Change_;	// キを変える
-	De text_de_Change_;	// デを変える
+	bool text_ki_Change_;	// 仲に変える
+	bool text_eta_Change_;	//なるに変える
+	De text_de_Change_;		// 原に変える
+	Guti text_guti_Change_;	//田に変える
 };

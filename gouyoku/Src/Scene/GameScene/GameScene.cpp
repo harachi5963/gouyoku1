@@ -21,10 +21,14 @@
 #include "../../Object/Actor/Object/Calender.h"
 #include "../../Object/Actor/Object/Desuku.h"
 #include "../../Object/Actor/Object/Chair.h"
+#include "../../Object/Actor/Object/Kasatate/Kasatate.h"
+#include "../../Object/Actor/Object/Projector.h"
+#include "../../Object/Actor/Object/Tokei.h"
 
 #include "../../Utility/AsoUtility.h"
 #include "../../Input/InputManager.h"
 #include "../SceneManager.h"
+#include "../../Audio/AudioManager.h"
 
 GameScene::GameScene(void)
 {
@@ -65,12 +69,14 @@ void GameScene::Load(void)
 	ActorBase* soccerball = new Soccerball();						// ドアを生成
 	ActorBase* tenisuball = new Tenisuball();						// ドアを生成
 	ActorBase* volleyball = new Volleyball();						// ドアを生成
-	ActorBase* pc = new Pc();						// ドアを生成
-	ActorBase* tirasi = new Tirasi();			// チラシを生成
 	ActorBase* calender = new Calender();
-	ActorBase* desuku1 = new Desuku();			//机を生成
+	ActorBase* pc = new Pc();										// ドアを生成
+	ActorBase* tirasi = new Tirasi();								// チラシを生成
+	ActorBase* desuku1 = new Desuku();								//机を生成
 	ActorBase* chair1 = new Chair();
-	
+	ActorBase* kasatate = new Kasatate();
+	ActorBase* projector = new Projector();							//プロジェクター
+	ActorBase* tokei = new Tokei();
 
 	// アクター配列に入れる
 	allActor_.push_back(player_);
@@ -86,6 +92,9 @@ void GameScene::Load(void)
 	allActor_.push_back(calender);
 	allActor_.push_back(desuku1);
 	allActor_.push_back(chair1);
+	allActor_.push_back(kasatate);
+	allActor_.push_back(projector);
+	allActor_.push_back(tokei);
 
 	// カメラモード変更
 	camera_->SetFollow(player_);
@@ -100,6 +109,8 @@ void GameScene::Load(void)
 		// 読み込み
 		actor->Load();
 	}
+
+	AudioManager::GetInstance()->LoadSceneSound(LoadScene::GAME);
 }
 
 void GameScene::LoadEnd(void)
@@ -116,6 +127,8 @@ void GameScene::LoadEnd(void)
 		// 読み込み
 		actor->LoadEnd();
 	}
+
+	AudioManager::GetInstance()->PlayBGM(SoundID::BGM_BATTLE);
 }
 
 void GameScene::Update(void)
@@ -179,6 +192,7 @@ void GameScene::Release(void)
 
 	// 配列をクリア
 	allActor_.clear();
+	AudioManager::GetInstance()->DeleteSceneSound(LoadScene::GAME);
 }
 
 void GameScene::isDoorCollision(void)
@@ -237,6 +251,9 @@ void GameScene::isDoorCollision(void)
 
 void GameScene::isDoorOpen(void)
 {
+	//異変の数検索用
+	int ihenNum = 0;
+
 	// 全てのオブジェクトを回す
 	for (auto actor : allActor_)
 	{
@@ -245,9 +262,27 @@ void GameScene::isDoorOpen(void)
 			// 異変オブジェクトじゃないのでスキップ
 			continue;
 		}
-		
+		ihenNum++;
 		// 異変オブジェクトを発見
-		actor->SetIhen(true);
+		/*actor->SetIhen(true);*/
+	}
+
+	int ihenact = GetRand(ihenNum - 1);
+	ihenNum = 0;
+	for (auto actor : allActor_)
+	{
+		if (actor->GetTag() != ActorBase::TAG::IHEN_OBJECT)
+		{
+			// 異変オブジェクトじゃないのでスキップ
+			continue;
+		}
+		ihenNum++;
+		if (ihenNum == ihenact)
+		{
+			actor->SetIhen(true);
+		}
+		// 異変オブジェクトを発見
+		/*actor->SetIhen(true);*/
 	}
 }
 
