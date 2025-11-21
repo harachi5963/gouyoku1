@@ -303,7 +303,7 @@ void GameScene::isDoorCollision(void)
 				// ドアを開いた
 				isDoorOpen();
 
-				calender->SetCalender(Calender::CALENDER::APR);
+				calender->SetCalender(Calender::CALENDER::FEB);
 			}
 
 			//スペースキーが押されたら
