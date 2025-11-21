@@ -36,12 +36,14 @@ void Projector::InitLoad(void)
 
 void Projector::InitTransform(void)
 {
-	pos_ = { 920.0f,100.0f,-10.0f };
+	pos_ = { 595.352173f,100.0f,-340.0f };
 	scale_ = { 0.4f,0.4f,0.4f };
-	angle_ = { 0.0f,500.0f,0.0f };
+	angle_ = { 0.0f,180.0f * DX_PI_F / 180.0f,0.0f };
 
 	// サイズ変更
 	MV1SetScale(modelId_, scale_);
+	MV1SetRotationXYZ(modelId_, angle_);
+
 }
 
 void Projector::InitAnimation(void)

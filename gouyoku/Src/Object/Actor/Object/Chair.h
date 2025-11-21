@@ -9,8 +9,8 @@ public:
 public:
 
 	// çXêV
-	void Update(void) override;
-
+	void SetChair(const TCHAR* path, VECTOR pos, VECTOR scl, VECTOR angle) ;
+	void Update(void);
 	// ï`âÊ
 	void Draw(void) override;
 
