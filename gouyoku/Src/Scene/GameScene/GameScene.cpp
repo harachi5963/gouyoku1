@@ -118,6 +118,14 @@ void GameScene::Load(void)
 		{ 1.7f,1.7f,1.7f },
 		{ 0.0f,0.0f,0.0f }
 	);
+	//椅子を生成
+	Chair* chair3 = new Chair();
+	chair3->SetChair(
+		"Data/object/Chair/Chair2.mv1",
+		{ 810.069336f,0.000103f,-240.8284 },
+		{ 1.7f,1.7f,1.7f },
+		{ 0.0f,0.0f,0.0f }
+	);
 	// アクター配列に入れる
 	allActor_.push_back(player_);
 	allActor_.push_back(vendingMachine);
@@ -138,6 +146,8 @@ void GameScene::Load(void)
 	allActor_.push_back(desuku3);
 	allActor_.push_back(chair1);
 	allActor_.push_back(chair2);
+	allActor_.push_back(chair3);
+
 
 	// カメラモード変更
 	camera_->SetFollow(player_);
