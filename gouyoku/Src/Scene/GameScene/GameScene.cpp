@@ -69,12 +69,13 @@ void GameScene::Load(void)
 	ActorBase* soccerball = new Soccerball();						// ドアを生成
 	ActorBase* tenisuball = new Tenisuball();						// ドアを生成
 	ActorBase* volleyball = new Volleyball();						// ドアを生成
-	ActorBase* calender = new Calender();
 	ActorBase* pc = new Pc();										// ドアを生成
 	ActorBase* tirasi = new Tirasi();								// チラシを生成
 	ActorBase* kasatate = new Kasatate();
 	ActorBase* projector = new Projector();							//プロジェクター
 	ActorBase* tokei = new Tokei();
+
+	Calender* calender = new Calender();
 
 	//机を生成
 	Desuku* desuku1 = new Desuku();
@@ -242,6 +243,9 @@ void GameScene::isDoorCollision(void)
 	// プレイヤーの座標保持用
 	ActorBase* player = nullptr;
 
+	// カレンダー保持用
+	Calender* calender = nullptr;
+
 	// 全てのオブジェクトを回す
 	for (auto actor : allActor_)
 	{
@@ -249,6 +253,16 @@ void GameScene::isDoorCollision(void)
 		if (actor->GetTag() == ActorBase::TAG::PLAYER)
 		{
 			player = actor;
+		}
+	}
+
+	// 全てのオブジェクトを回す
+	for (auto actor : allActor_)
+	{
+		// プレイヤーだったら
+		if (actor->GetTag() == ActorBase::TAG::CALENDER)
+		{
+			calender = dynamic_cast<Calender*>(actor);
 		}
 	}
 
@@ -278,6 +292,8 @@ void GameScene::isDoorCollision(void)
 
 				// ドアを開いた
 				isDoorOpen();
+
+				calender->SetCalender(Calender::CALENDER::APR);
 			}
 
 			//スペースキーが押されたら
