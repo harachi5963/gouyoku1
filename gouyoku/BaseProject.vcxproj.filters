@@ -141,6 +141,9 @@
     <ClCompile Include="Src\Object\Actor\Object\Tirasi.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Object\Actor\Object\Calender.cpp">
+       <Filter>ソース ファイル</Filter>
+    </ClCompile>
     <ClCompile Include="Src\Object\Actor\Object\Kasatate\Kasatate.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -257,29 +260,25 @@
     <ClInclude Include="Src\Object\Actor\Object\Tirasi.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Object\Actor\Object\Calender.h">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
     <ClInclude Include="Src\Object\Actor\Object\Kasatate\Kasatate.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Src\Object\Actor\Object\Projector.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-<<<<<<< HEAD
-<<<<<<< HEAD
     <ClInclude Include="Src\Object\Actor\Object\Tokei.h">
-=======
-=======
->>>>>>> 7ce385ed109e4bfcd673d59c40a88377a39a49f7
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
     <ClInclude Include="Src\Audio\AudioManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Src\Audio\SoundTable.h">
-<<<<<<< HEAD
->>>>>>> origin/anndou
-=======
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Src\Object\Actor\Object\Tokei.h">
->>>>>>> 7ce385ed109e4bfcd673d59c40a88377a39a49f7
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

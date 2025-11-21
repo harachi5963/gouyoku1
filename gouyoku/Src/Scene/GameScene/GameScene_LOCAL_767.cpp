@@ -18,7 +18,6 @@
 #include "../../Object/Actor/Object/Door.h"
 #include "../../Object/Actor/Object/Door2.h"
 #include "../../Object/Actor/Object/Tirasi.h"
-#include "../../Object/Actor/Object/Calender.h"
 #include "../../Object/Actor/Object/Desuku.h"
 #include "../../Object/Actor/Object/Chair.h"
 #include "../../Object/Actor/Object/Kasatate/Kasatate.h"
@@ -69,7 +68,6 @@ void GameScene::Load(void)
 	ActorBase* soccerball = new Soccerball();						// ドアを生成
 	ActorBase* tenisuball = new Tenisuball();						// ドアを生成
 	ActorBase* volleyball = new Volleyball();						// ドアを生成
-	ActorBase* calender = new Calender();
 	ActorBase* pc = new Pc();										// ドアを生成
 	ActorBase* tirasi = new Tirasi();								// チラシを生成
 	ActorBase* kasatate = new Kasatate();
@@ -128,9 +126,6 @@ void GameScene::Load(void)
 	allActor_.push_back(volleyball);
 	allActor_.push_back(pc);
 	allActor_.push_back(tirasi);
-	allActor_.push_back(calender);
-	allActor_.push_back(desuku1);
-	allActor_.push_back(chair1);
 	allActor_.push_back(kasatate);
 	allActor_.push_back(projector);
 	allActor_.push_back(tokei);
@@ -295,9 +290,6 @@ void GameScene::isDoorCollision(void)
 
 void GameScene::isDoorOpen(void)
 {
-	//異変の数検索用
-	int ihenNum = 0;
-
 	// 全てのオブジェクトを回す
 	for (auto actor : allActor_)
 	{
@@ -306,27 +298,9 @@ void GameScene::isDoorOpen(void)
 			// 異変オブジェクトじゃないのでスキップ
 			continue;
 		}
-		ihenNum++;
+		
 		// 異変オブジェクトを発見
-		/*actor->SetIhen(true);*/
-	}
-
-	int ihenact = GetRand(ihenNum - 1);
-	ihenNum = 0;
-	for (auto actor : allActor_)
-	{
-		if (actor->GetTag() != ActorBase::TAG::IHEN_OBJECT)
-		{
-			// 異変オブジェクトじゃないのでスキップ
-			continue;
-		}
-		ihenNum++;
-		if (ihenNum == ihenact)
-		{
-			actor->SetIhen(true);
-		}
-		// 異変オブジェクトを発見
-		/*actor->SetIhen(true);*/
+		actor->SetIhen(true);
 	}
 }
 
