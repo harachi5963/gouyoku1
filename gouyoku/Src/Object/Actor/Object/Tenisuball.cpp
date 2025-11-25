@@ -18,7 +18,7 @@ void Tenisuball::InitLoad(void)
 
 void Tenisuball::InitTransform(void)
 {
-	pos_ = { 100.0f,30.0f,0.0f };
+	pos_ = { 1170.0f,115.0f,-311.0f };
 	scale_ = { 0.15f,0.15f,0.15f };
 	angle_ = { 0.0f,0.0f,0.0f };
 
