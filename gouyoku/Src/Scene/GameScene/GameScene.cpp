@@ -22,6 +22,8 @@
 #include "../../Object/Actor/Object/Desuku.h"
 #include "../../Object/Actor/Object/Chair.h"
 #include "../../Object/Actor/Object/Kasatate/Kasatate.h"
+#include "../../Object/Actor/Object/Moerugomi/Moerugomi.h"
+#include "../../Object/Actor/Object/Howaitoboudo/Howaitoboudo.h"
 #include "../../Object/Actor/Object/Projector.h"
 #include "../../Object/Actor/Object/Tokei.h"
 
@@ -72,6 +74,8 @@ void GameScene::Load(void)
 	ActorBase* pc = new Pc();										// ドアを生成
 	ActorBase* tirasi = new Tirasi();								// チラシを生成
 	ActorBase* kasatate = new Kasatate();
+	ActorBase* moerugomi = new Moerugomi();
+	ActorBase* howaitoboudo = new Howaitoboudo();
 	ActorBase* projector = new Projector();							//プロジェクター
 	ActorBase* tokei = new Tokei();
 
@@ -147,7 +151,9 @@ void GameScene::Load(void)
 	allActor_.push_back(tirasi);
 	allActor_.push_back(calender);
 	allActor_.push_back(kasatate);
+	allActor_.push_back(moerugomi);
 	allActor_.push_back(projector);
+	allActor_.push_back(howaitoboudo);
 	allActor_.push_back(tokei);
 	allActor_.push_back(desuku1);
 	allActor_.push_back(desuku2);
