@@ -13,12 +13,12 @@ Volleyball::~Volleyball()
 void Volleyball::InitLoad(void)
 {
 	tag_ = TAG::IHEN_OBJECT;
-	//modelId_ = MV1LoadModel("Data/object/Ball/volleyball_1.mv1");
+	modelId_ = MV1LoadModel("Data/object/Ball/volleyball_1.mv1");
 }
 
 void Volleyball::InitTransform(void)
 {
-	pos_ = { 100.0f,30.0f,0.0f };
+	pos_ = { 1230.0f,125.0f,-311.0f };
 	scale_ = { 0.3f,0.3f,0.3f };
 	angle_ = { 0.0f,0.0f,0.0f };
 

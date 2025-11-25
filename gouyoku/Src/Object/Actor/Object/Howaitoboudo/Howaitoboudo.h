@@ -1,14 +1,11 @@
 #pragma once
-#include "../ActorBase.h"
+#include "../../ActorBase.h"
 
-class Soccerball :public ActorBase
+class Howaitoboudo :public ActorBase
 {
 public:
-	Soccerball();
-	~Soccerball();
-
-	//Ž©ŒÈ”­Œõ
-	static constexpr COLOR_F EMI_COLOR = { 1.0f,1.0f,1.0f,1.0f };
+	Howaitoboudo();
+	~Howaitoboudo();
 
 public:
 
@@ -36,3 +33,5 @@ private:
 	void InitPost(void) override;
 
 };
+
+

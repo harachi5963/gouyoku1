@@ -40,6 +40,8 @@
     <ClCompile Include="Src\Scene\TitleScene\TitleScene.cpp" />
     <ClCompile Include="Src\Utility\AsoUtility.cpp" />
     <ClCompile Include="Src\Object\Actor\Object\Plastic bottle.cpp" />
+    <ClCompile Include="Src\Object\Actor\Object\Moerugomi\Moerugomi.cpp" />
+    <ClCompile Include="Src\Object\Actor\Object\Howaitoboudo\Howaitoboudo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Audio\AudioManager.h" />
@@ -81,5 +83,7 @@
     <ClInclude Include="Src\Scene\TitleScene\TitleScene.h" />
     <ClInclude Include="Src\Utility\AsoUtility.h" />
     <ClInclude Include="Src\Object\Actor\Object\Plastic bottle.h" />
+    <ClInclude Include="Src\Object\Actor\Object\Moerugomi\Moerugomi.h" />
+    <ClInclude Include="Src\Object\Actor\Object\Howaitoboudo\Howaitoboudo.h" />
   </ItemGroup>
 </Project>
