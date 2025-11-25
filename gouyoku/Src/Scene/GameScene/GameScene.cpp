@@ -69,12 +69,13 @@ void GameScene::Load(void)
 	ActorBase* soccerball = new Soccerball();						// ドアを生成
 	ActorBase* tenisuball = new Tenisuball();						// ドアを生成
 	ActorBase* volleyball = new Volleyball();						// ドアを生成
-	ActorBase* calender = new Calender();
 	ActorBase* pc = new Pc();										// ドアを生成
 	ActorBase* tirasi = new Tirasi();								// チラシを生成
 	ActorBase* kasatate = new Kasatate();
 	ActorBase* projector = new Projector();							//プロジェクター
 	ActorBase* tokei = new Tokei();
+
+	Calender* calender = new Calender();
 
 	//机を生成
 	Desuku* desuku1 = new Desuku();
@@ -117,6 +118,14 @@ void GameScene::Load(void)
 		{ 1.7f,1.7f,1.7f },
 		{ 0.0f,0.0f,0.0f }
 	);
+	//椅子を生成
+	Chair* chair3 = new Chair();
+	chair3->SetChair(
+		"Data/object/Chair/Chair2.mv1",
+		{ 810.069336f,0.000103f,-240.8284 },
+		{ 1.7f,1.7f,1.7f },
+		{ 0.0f,0.0f,0.0f }
+	);
 	// アクター配列に入れる
 	allActor_.push_back(player_);
 	allActor_.push_back(vendingMachine);
@@ -129,8 +138,6 @@ void GameScene::Load(void)
 	allActor_.push_back(pc);
 	allActor_.push_back(tirasi);
 	allActor_.push_back(calender);
-	allActor_.push_back(desuku1);
-	allActor_.push_back(chair1);
 	allActor_.push_back(kasatate);
 	allActor_.push_back(projector);
 	allActor_.push_back(tokei);
@@ -139,6 +146,8 @@ void GameScene::Load(void)
 	allActor_.push_back(desuku3);
 	allActor_.push_back(chair1);
 	allActor_.push_back(chair2);
+	allActor_.push_back(chair3);
+
 
 	// カメラモード変更
 	camera_->SetFollow(player_);
@@ -244,6 +253,9 @@ void GameScene::isDoorCollision(void)
 	// プレイヤーの座標保持用
 	ActorBase* player = nullptr;
 
+	// カレンダー保持用
+	Calender* calender = nullptr;
+
 	// 全てのオブジェクトを回す
 	for (auto actor : allActor_)
 	{
@@ -251,6 +263,16 @@ void GameScene::isDoorCollision(void)
 		if (actor->GetTag() == ActorBase::TAG::PLAYER)
 		{
 			player = actor;
+		}
+	}
+
+	// 全てのオブジェクトを回す
+	for (auto actor : allActor_)
+	{
+		// プレイヤーだったら
+		if (actor->GetTag() == ActorBase::TAG::CALENDER)
+		{
+			calender = dynamic_cast<Calender*>(actor);
 		}
 	}
 
@@ -280,6 +302,8 @@ void GameScene::isDoorCollision(void)
 
 				// ドアを開いた
 				isDoorOpen();
+
+				calender->SetCalender(Calender::CALENDER::FEB);
 			}
 
 			//スペースキーが押されたら

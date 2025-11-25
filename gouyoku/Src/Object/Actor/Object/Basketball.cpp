@@ -18,7 +18,7 @@ void Basketball::InitLoad(void)
 
 void Basketball::InitTransform(void)
 {
-	pos_ = { 100.0f,30.0f,0.0f };
+	pos_ = { 1300.0f,130.0f,-311.0f };
 	scale_ = { 0.32f,0.32f,0.32f };
 	angle_ = { 0.0f,0.0f,0.0f };
 

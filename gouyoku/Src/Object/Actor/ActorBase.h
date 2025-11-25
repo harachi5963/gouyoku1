@@ -13,6 +13,7 @@ public:
 		HUMAN,
 		IHEN_OBJECT,
 		DOOR,
+		CALENDER,
 	};
 
 public:
