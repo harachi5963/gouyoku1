@@ -1,22 +1,11 @@
 #pragma once
-#include "../ActorBase.h"
+#include "../../ActorBase.h"
 
-class Projector :public ActorBase
+class Howaitoboudo :public ActorBase
 {
 public:
-	Projector();
-	~Projector();
-
-
-	// アニメーション種別
-	enum class ANIM_TYPE
-	{
-		OPEN,
-		NON,
-	};
-
-	//自己発光
-	static constexpr COLOR_F EMI_COLOR = { 13.0f,13.0f,13.0f,13.0f };
+	Howaitoboudo();
+	~Howaitoboudo();
 
 public:
 
@@ -44,3 +33,5 @@ private:
 	void InitPost(void) override;
 
 };
+
+
