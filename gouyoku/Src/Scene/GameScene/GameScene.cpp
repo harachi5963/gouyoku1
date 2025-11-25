@@ -319,7 +319,7 @@ void GameScene::isDoorCollision(void)
 			if (InputManager::GetInstance()->IsTrgUp(KEY_INPUT_SPACE))
 			{
 				//ƒQ[ƒ€ƒV[ƒ“‚Ö
-				SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::GAME);
+				SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::CLEAR);
 				return;
 			}
 		}
