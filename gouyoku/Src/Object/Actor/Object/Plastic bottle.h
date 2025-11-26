@@ -1,16 +1,11 @@
 #pragma once
-#include "../ActorBase.h"
+#include"../ActorBase.h"
 
-class Soccerball :public ActorBase
+class Plasticbottle:public ActorBase
 {
 public:
-	Soccerball();
-	~Soccerball();
-
-	//é©å»î≠åı
-	static constexpr COLOR_F EMI_COLOR = { 1.0f,1.0f,1.0f,1.0f };
-
-public:
+	Plasticbottle();
+	~Plasticbottle()override;
 
 	// çXêV
 	void Update(void) override;

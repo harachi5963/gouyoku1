@@ -1,14 +1,11 @@
 #pragma once
 #include "../ActorBase.h"
 
-class Soccerball :public ActorBase
+class Pettobotoru :public ActorBase
 {
 public:
-	Soccerball();
-	~Soccerball();
-
-	//Ž©ŒÈ”­Œõ
-	static constexpr COLOR_F EMI_COLOR = { 1.0f,1.0f,1.0f,1.0f };
+	Pettobotoru();
+	~Pettobotoru();
 
 public:
 

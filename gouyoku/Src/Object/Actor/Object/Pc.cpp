@@ -13,8 +13,8 @@ Pc::~Pc()
 void Pc::InitLoad(void)
 {
 	tag_ = TAG::IHEN_OBJECT;
-	modelId_ = MV1LoadModel("Data/object/Ball/basketball.mv1");
-	ihenModelId_ = MV1LoadModel("Data/object/Ball/basketball.mv1");
+	//modelId_ = MV1LoadModel("Data/object/Ball/basketball.mv1");
+	//ihenModelId_ = MV1LoadModel("Data/object/Ball/basketball.mv1");
 }
 
 void Pc::InitTransform(void)

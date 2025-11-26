@@ -26,6 +26,7 @@
 #include "../../Object/Actor/Object/Howaitoboudo/Howaitoboudo.h"
 #include "../../Object/Actor/Object/Projector.h"
 #include "../../Object/Actor/Object/Tokei.h"
+#include "../../Object/Actor/Object/Plastic bottle.h"
 
 #include "../../Utility/AsoUtility.h"
 #include "../../Input/InputManager.h"
@@ -95,6 +96,7 @@ void GameScene::Load(void)
 	ActorBase* tokei = new Tokei();
 
 	Calender* calender = new Calender();
+	Plasticbottle* plasticbottle = new Plasticbottle();
 
 	//机を生成
 	Desuku* desuku1 = new Desuku();
@@ -177,6 +179,7 @@ void GameScene::Load(void)
 	allActor_.push_back(chair1);
 	allActor_.push_back(chair2);
 	allActor_.push_back(chair3);
+	allActor_.push_back(plasticbottle);
 
 
 	// カメラモード変更
