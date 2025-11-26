@@ -19,7 +19,7 @@ void Volleyball::InitLoad(void)
 void Volleyball::InitTransform(void)
 {
 	pos_ = { 1230.0f,125.0f,-311.0f };
-	scale_ = { 0.3f,0.3f,0.3f };
+	scale_ = { 0.3f,0.3f,0.3f };																																																																				
 	angle_ = { 0.0f,0.0f,0.0f };
 
 	// サイズ変更
