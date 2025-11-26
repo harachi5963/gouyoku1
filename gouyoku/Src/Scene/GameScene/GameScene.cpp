@@ -48,6 +48,21 @@ void GameScene::Init(void)
 	// ステージ初期化
 	stage_->Init();
 
+	nowCalendar_ = 0;
+
+	// 異変をするか？
+	int ihenact = GetRand(1);
+
+	if (ihenact)
+	{
+		isIhen_ = true;
+
+	}
+	else
+	{
+		isIhen_ = false;
+	}
+
 	// 全てのアクターを初期化
 	for (auto actor : allActor_)
 	{
@@ -96,7 +111,7 @@ void GameScene::Load(void)
 		"Data/object/Desuku/desuku.mv1",
 		{ 895.352f,0.000122f,-340.0f },
 		{ 5.5f, 2.5f, 3.5f },
-	    { 0.0f,300.0f,0.0f }
+		{ 0.0f,300.0f,0.0f }
 	);
 	//机を生成
 	Desuku* desuku3 = new Desuku();
@@ -234,6 +249,7 @@ void GameScene::Draw(void)
 	// ステージ描画
 	stage_->Draw();
 
+	DrawFormatString(0, 100, 0xFFFFFF, isIhen_ ? "異変あり" : "異変なし");
 
 	// 全てのアクターを回す
 	for (auto actor : allActor_)
@@ -295,44 +311,93 @@ void GameScene::isDoorCollision(void)
 	for (auto actor : allActor_)
 	{
 		// ドアじゃないなら判定しない
-		if (actor->GetTag() != ActorBase::TAG::DOOR)
+		if (actor->GetTag() == ActorBase::TAG::GO_DOOR ||
+			actor->GetTag() == ActorBase::TAG::RETURN_DOOR)
+		{
+			// オブジェクトとカメラが接触しているか？
+			if (AsoUtility::IsHitSpheres(
+				actor->GetPos(),
+				actor->GetSphereRadius(),
+				player->GetPos(),
+				player->GetSphereRadius()
+			))
+			{
+				// キーが押されているか？
+				if (InputManager::GetInstance()->IsTrgDown(KEY_INPUT_F))
+				{
+					// 進むドア
+					if (actor->GetTag() == ActorBase::TAG::GO_DOOR)
+					{
+						// 異変がある
+						if (isIhen_)
+						{
+							nowCalendar_++;
+						}
+						else
+						{
+							nowCalendar_ = 0;
+						}
+					}
+					// 戻るドア
+					else
+					{
+						// 異変がある
+						if (isIhen_)
+						{
+							nowCalendar_ = 0;
+						}
+						else
+						{
+							nowCalendar_++;
+						}
+					}
+
+					int ihenact = GetRand(1);
+
+					// 異変をするか？
+					if (ihenact)
+					{
+						isIhen_ = true;
+
+						// 異変のリセット
+						IhenObjectReSet();
+
+						// 異変がONならセットする
+						IhenObjectSet();
+					}
+					else
+					{
+						isIhen_ = false;
+
+						// 異変のリセット
+						IhenObjectReSet();
+
+					}
+
+					calender->SetCalender(static_cast<Calender::CALENDER>(nowCalendar_));
+
+					// カメラを初期位置に
+					player->Init();
+				}
+
+				//カレンダーがクリアになったら
+				if (nowCalendar_ == CLEAR_CALENDER)
+				{
+					//ゲームシーンへ
+					SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::CLEAR);
+					return;
+				}
+			}
+		}
+		else
 		{
 			// ドアじゃないのでこのオブジェクトをスキップ
 			continue;
 		}
-
-		// オブジェクトとカメラが接触しているか？
-		if (AsoUtility::IsHitSpheres(
-			actor->GetPos(),
-			actor->GetSphereRadius(),
-			player->GetPos(),
-			player->GetSphereRadius()
-		))
-		{
-			// キーが押されているか？
-			if (InputManager::GetInstance()->IsTrgDown(KEY_INPUT_F))
-			{
-				// カメラを初期位置に
-				player->Init();
-
-				// ドアを開いた
-				isDoorOpen();
-
-				calender->SetCalender(Calender::CALENDER::FEB);
-			}
-
-			//スペースキーが押されたら
-			if (InputManager::GetInstance()->IsTrgUp(KEY_INPUT_SPACE))
-			{
-				//ゲームシーンへ
-				SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::CLEAR);
-				return;
-			}
-		}
 	}
 }
 
-void GameScene::isDoorOpen(void)
+void GameScene::IhenObjectSet(void)
 {
 	//異変の数検索用
 	int ihenNum = 0;
@@ -366,6 +431,24 @@ void GameScene::isDoorOpen(void)
 		}
 		// 異変オブジェクトを発見
 		/*actor->SetIhen(true);*/
+	}
+}
+
+void GameScene::IhenObjectReSet(void)
+{
+	//異変の数検索用
+	int ihenNum = 0;
+
+	// 全てのオブジェクトを回す
+	for (auto actor : allActor_)
+	{
+		if (actor->GetTag() != ActorBase::TAG::IHEN_OBJECT)
+		{
+			// 異変オブジェクトじゃないのでスキップ
+			continue;
+		}
+
+		actor->SetIhen(false);
 	}
 }
 

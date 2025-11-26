@@ -12,7 +12,8 @@ public:
 		PLAYER,
 		HUMAN,
 		IHEN_OBJECT,
-		DOOR,
+		GO_DOOR,
+		RETURN_DOOR,
 		CALENDER,
 	};
 

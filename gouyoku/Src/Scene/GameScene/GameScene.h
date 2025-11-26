@@ -12,6 +12,8 @@ class ActorBase;
 class GameScene : public SceneBase
 {
 public:
+	static constexpr int CLEAR_CALENDER = 10;
+public:
 	GameScene(void);				// コンストラクタ
 	~GameScene(void) override;		// デストラクタ
 
@@ -25,10 +27,18 @@ public:
 private:
 	void isDoorCollision(void);
 
-	// ドア開いた
-	void isDoorOpen(void);
+	// 異変をセットする
+	void IhenObjectSet(void);
+
+	// 異変オブジェクトをリセットする
+	void IhenObjectReSet(void);
 
 private:
+
+	bool isIhen_;
+
+	int nowCalendar_;
+
 	// カメラ
 	Camera* camera_;
 

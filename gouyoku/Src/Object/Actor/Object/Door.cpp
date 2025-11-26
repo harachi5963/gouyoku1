@@ -25,7 +25,7 @@ void Door::InitAnimation(void)
 
 void Door::InitPost(void)
 {
-	tag_ = TAG::DOOR;
+	tag_ = TAG::RETURN_DOOR;
 	isCollision_ = false;
 	sphereRadius_ = 300.0f;
 }
