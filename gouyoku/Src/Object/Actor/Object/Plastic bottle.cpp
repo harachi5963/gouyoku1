@@ -31,7 +31,7 @@ void Plasticbottle::InitLoad(void)
 
 void Plasticbottle::InitTransform(void)
 {
-	pos_ = { 1313.087524f,100.0f,-310.227478f };
+	pos_ = { 699.908203f,100.0f,-340.9218f };
 	scale_ = { 0.15f,0.15f,0.15f };
 	angle_ = { 0.0f,140.0f * DX_PI_F / 180.0f,0.0f };
 
