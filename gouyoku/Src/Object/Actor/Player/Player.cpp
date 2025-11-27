@@ -40,7 +40,7 @@ void Player::InitTransform(void)
 	MV1SetRotationMatrix(modelId_, mat);
 
 	// ÉÇÉfÉãÇÃà íuê›íË
-	pos_ = AsoUtility::VECTOR_ZERO;
+	pos_ = {-2117.643555f,0.000185f,-697.131470f};
 	MV1SetPosition(modelId_, pos_);
 }
 

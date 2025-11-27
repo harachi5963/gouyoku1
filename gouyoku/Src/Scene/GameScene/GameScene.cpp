@@ -98,6 +98,8 @@ void GameScene::Load(void)
 	Calender* calender = new Calender();
 	Plasticbottle* plasticbottle = new Plasticbottle();
 
+	setumei_ = LoadGraph("Data/Image/setumei.png");
+
 	//机を生成
 	Desuku* desuku1 = new Desuku();
 	desuku1->SetDesuku(
@@ -260,6 +262,9 @@ void GameScene::Draw(void)
 		// 更新処理
 		actor->Draw();
 	}
+
+	// 説明文の描画
+	DrawRotaGraph(875, 80, 0.2f, 0.0, setumei_, true);
 }
 
 void GameScene::Release(void)
@@ -267,6 +272,8 @@ void GameScene::Release(void)
 	// ステージ解放
 	stage_->Release();
 	delete stage_;
+
+	DeleteGraph(setumei_);
 
 
 	// 全てのアクターを回す

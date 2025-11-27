@@ -39,6 +39,8 @@ private:
 
 	int nowCalendar_;
 
+	int setumei_;
+
 	// ƒJƒƒ‰
 	Camera* camera_;
 
