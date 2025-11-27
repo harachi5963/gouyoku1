@@ -23,6 +23,7 @@
 #include "../../Object/Actor/Object/Chair.h"
 #include "../../Object/Actor/Object/Kasatate/Kasatate.h"
 #include "../../Object/Actor/Object/Moerugomi/Moerugomi.h"
+#include "../../Object/Actor/Object/pettobotorugomi.h"
 #include "../../Object/Actor/Object/Howaitoboudo/Howaitoboudo.h"
 #include "../../Object/Actor/Object/Projector.h"
 #include "../../Object/Actor/Object/Tokei.h"
@@ -91,6 +92,7 @@ void GameScene::Load(void)
 	ActorBase* tirasi = new Tirasi();								// チラシを生成
 	ActorBase* kasatate = new Kasatate();
 	ActorBase* moerugomi = new Moerugomi();
+	ActorBase* pettobotorugomi = new Pettobotorugomi();
 	ActorBase* howaitoboudo = new Howaitoboudo();
 	ActorBase* projector = new Projector();							//プロジェクター
 	ActorBase* tokei = new Tokei();
@@ -171,6 +173,7 @@ void GameScene::Load(void)
 	allActor_.push_back(calender);
 	allActor_.push_back(kasatate);
 	allActor_.push_back(moerugomi);
+	allActor_.push_back(pettobotorugomi);
 	allActor_.push_back(projector);
 	allActor_.push_back(howaitoboudo);
 	allActor_.push_back(tokei);

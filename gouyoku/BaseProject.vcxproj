@@ -28,6 +28,7 @@
     <ClCompile Include="Src\Object\Actor\Object\Calender.cpp" />
     <ClCompile Include="Src\Object\Actor\Object\Howaitoboudo\Howaitoboudo.cpp" />
     <ClCompile Include="Src\Object\Actor\Object\Kasatate\Kasatate.cpp" />
+    <ClCompile Include="Src\Object\Actor\Object\pettobotorugomi.cpp" />
     <ClCompile Include="Src\Object\Actor\Object\Plastic bottle.cpp" />
     <ClCompile Include="Src\Object\Actor\Object\Moerugomi\Moerugomi.cpp" />
     <ClCompile Include="Src\Object\Actor\Object\Projector.cpp" />
@@ -71,6 +72,7 @@
     <ClInclude Include="Src\Object\Actor\Object\Calender.h" />
     <ClInclude Include="Src\Object\Actor\Object\Howaitoboudo\Howaitoboudo.h" />
     <ClInclude Include="Src\Object\Actor\Object\Kasatate\Kasatate.h" />
+    <ClInclude Include="Src\Object\Actor\Object\pettobotorugomi.h" />
     <ClInclude Include="Src\Object\Actor\Object\Plastic bottle.h" />
     <ClInclude Include="Src\Object\Actor\Object\Moerugomi\Moerugomi.h" />
     <ClInclude Include="Src\Object\Actor\Object\Projector.h" />
@@ -79,6 +81,7 @@
     <ClInclude Include="Src\Object\Actor\Object\Tokei.h" />
     <ClInclude Include="Src\Object\Actor\Object\Volleyball.h" />
     <ClInclude Include="Src\Object\Actor\Object\Tirasi.h" />
+    <ClInclude Include="Src\Object\pettobotorugomi.h" />
     <ClInclude Include="Src\Scene\Gameclear\GameClear.h" />
     <ClInclude Include="Src\Object\Actor\Object\Chair.h" />
     <ClInclude Include="Src\Object\Actor\Object\Desuku.h" />
