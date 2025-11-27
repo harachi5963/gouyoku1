@@ -27,6 +27,7 @@
 #include "../../Object/Actor/Object/Projector.h"
 #include "../../Object/Actor/Object/Tokei.h"
 #include "../../Object/Actor/Object/Plastic bottle.h"
+#include "../../Object/Actor/Object/Signboard.h"
 
 #include "../../Utility/AsoUtility.h"
 #include "../../Input/InputManager.h"
@@ -94,6 +95,7 @@ void GameScene::Load(void)
 	ActorBase* howaitoboudo = new Howaitoboudo();
 	ActorBase* projector = new Projector();							//プロジェクター
 	ActorBase* tokei = new Tokei();
+	ActorBase* signboard = new Signboard();
 
 	Calender* calender = new Calender();
 	Plasticbottle* plasticbottle = new Plasticbottle();
@@ -172,6 +174,7 @@ void GameScene::Load(void)
 	allActor_.push_back(projector);
 	allActor_.push_back(howaitoboudo);
 	allActor_.push_back(tokei);
+	allActor_.push_back(signboard);
 	allActor_.push_back(desuku1);
 	allActor_.push_back(desuku2);
 	allActor_.push_back(desuku3);
