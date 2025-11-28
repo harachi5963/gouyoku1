@@ -104,6 +104,7 @@ void GameScene::Load(void)
 
 	setumei_ = LoadGraph("Data/Image/setumei.png");
 
+
 	//Š÷‚ğ¶¬
 	Desuku* desuku1 = new Desuku();
 	desuku1->SetDesuku(
