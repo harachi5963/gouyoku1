@@ -17,7 +17,7 @@ namespace SoundTable_Title
 {
 	static const std::unordered_map<SoundID, std::string> Table =
 	{
-		{ SoundID::BGM_TITLE, "Data/Sound/maou_bgm_cyber37.mp3" },
+		{ SoundID::BGM_TITLE, "Data/Sound/BGM_title.mp3" },
 		{ SoundID::SE_BUTTON, "Data/Sound/SE/maou_se_sound24.mp3" },
 	};
 }
@@ -27,7 +27,7 @@ namespace SoundTable_Game
 {
 	static const std::unordered_map<SoundID, std::string> Table = 
 	{
-		{ SoundID::BGM_BATTLE, "Data/Sound/BGM_title.mp3" },
+		{ SoundID::BGM_BATTLE, "Data/Sound/hora-BGM.mp3" },
 		{ SoundID::SE_RUN,	"Data/Sound/SE/hit.wav" },
 		{ SoundID::SE_ATTACK, "Data/Sound/SE/attack.wav" },
 	};
