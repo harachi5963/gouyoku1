@@ -261,7 +261,6 @@ void GameScene::Draw(void)
 		// XVˆ—
 		actor->Draw();
 	}
-
 	// à–¾•¶‚Ì•`‰æ
 	DrawRotaGraph(875, 80, 0.2f, 0.0, setumei_, true);
 }

@@ -6,6 +6,7 @@
 #include "TitleScene/TitleScene.h"
 #include "GameScene/GameScene.h"
 #include"Gameclear/GameClear.h"
+#include "../Input/InputManager.h"
 
 SceneManager* SceneManager::instance_ = nullptr;
 
@@ -53,7 +54,7 @@ void SceneManager::Init3D(void)
 	SetUseLighting(true);
 
 	// 正面から斜め下に向かったライト
-	ChangeLightTypeDir({ 0.00f, -1.00f, 1.00f });
+	ChangeLightTypeDir({ 0.00f, 1.00f, 1.00f });
 }
 
 // 更新
@@ -78,6 +79,36 @@ void SceneManager::Update(void)
 	// 通常の更新処理
 	else
 	{
+		ChangeLightTypeDir({ testX_, testY_, testZ_ });
+
+		if (InputManager::GetInstance()->IsTrgDown(KEY_INPUT_1))
+		{
+			testX_ += 0.1f;
+
+		}
+		if (InputManager::GetInstance()->IsTrgDown(KEY_INPUT_4))
+		{
+			testX_ -= 0.1f;
+		}
+		if (InputManager::GetInstance()->IsTrgDown(KEY_INPUT_2))
+		{
+			testY_ += 0.1f;
+
+		}
+
+		if (InputManager::GetInstance()->IsTrgDown(KEY_INPUT_5))
+		{
+			testY_ -= 0.1f;
+		}
+		if (InputManager::GetInstance()->IsTrgDown(KEY_INPUT_3))
+		{
+			testZ_ += 0.1f;
+
+		}
+		if (InputManager::GetInstance()->IsTrgDown(KEY_INPUT_6))
+		{
+			testZ_ -= 0.1f;
+		}
 		// 現在のシーンの更新
 		scene_->Update();
 	}
@@ -97,6 +128,8 @@ void SceneManager::Draw(void)
 		//　現在のシーン描画
 		scene_->Draw();
 	}
+
+	DrawFormatString(0, 0, 0xffffff, "X = %f.2, Y = %f.2, Z = %f.2", testX_, testY_, testZ_);
 }
 
 void SceneManager::Delete(void)

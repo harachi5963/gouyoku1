@@ -12,6 +12,13 @@ void InputManager::Init(void)
 	Add(KEY_INPUT_LSHIFT);
 	Add(KEY_INPUT_LCONTROL);
 
+	Add(KEY_INPUT_1);
+	Add(KEY_INPUT_2);
+	Add(KEY_INPUT_3);
+	Add(KEY_INPUT_4);
+	Add(KEY_INPUT_5);
+	Add(KEY_INPUT_6);
+
 	Add(KEY_INPUT_W);
 	Add(KEY_INPUT_A);
 	Add(KEY_INPUT_S);
