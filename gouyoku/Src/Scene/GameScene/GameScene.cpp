@@ -130,14 +130,7 @@ void GameScene::Load(void)
 		{ 5.0f, 2.5f, 3.5f },
 		{ 0.0f,300.0f,0.0f }
 	);
-	//Š÷‚ð¶¬
-	Desuku* desuku4 = new Desuku();
-	desuku4->SetDesuku(
-		"Data/object/Desuku/desuku.mv1",
-		{ 305.352f,0.000122f,-190.0f },
-		{ 1.5f, 2.5f, 1.5f },
-		{ 0.0f,300.0f,0.0f }
-	);
+	
 	//ˆÖŽq‚ð¶¬
 	Chair* chair1 = new Chair();
 	chair1->SetChair(
@@ -184,7 +177,6 @@ void GameScene::Load(void)
 	allActor_.push_back(desuku1);
 	allActor_.push_back(desuku2);
 	allActor_.push_back(desuku3);
-	allActor_.push_back(desuku4);
 	allActor_.push_back(chair1);
 	allActor_.push_back(chair2);
 	allActor_.push_back(chair3);

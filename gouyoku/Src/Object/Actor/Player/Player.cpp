@@ -91,13 +91,13 @@ void Player::Update(void)
 void Player::Draw(void)
 {
 	ActorBase::Draw();
-	DrawFormatString(
-		0, 50, 0xffffff,
-		"キャラ座標　 ：(%f, %f, %f)",
-		pos_.x,
-		pos_.y,
-		pos_.z
-	);
+	//DrawFormatString(
+	//	0, 50, 0xffffff,
+		//"キャラ座標　 ：(%f, %f, %f)",
+		//pos_.x,
+		//pos_.y,
+		//pos_.z
+	//);
 }
 
 void Player::Release(void)

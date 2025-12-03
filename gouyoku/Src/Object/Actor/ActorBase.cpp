@@ -110,25 +110,25 @@ void ActorBase::Draw(void)
 		MV1DrawModel(modelId_);
 	}
 
-	DrawSphere3D(
-		VAdd(pos_,startCapsulePos_),
-		capsuleRadius_,
-		16,
-		0x00ff00,
-		0x00ff00,
-		false
-	);
+	//DrawSphere3D(
+	//	VAdd(pos_,startCapsulePos_),
+	//	capsuleRadius_,
+	//	16,
+	//	0x00ff00,
+	//	0x00ff00,
+	//	false
+	//);
 
-	DrawSphere3D(
-		VAdd(pos_, endCapsulePos_),
-		capsuleRadius_,
-		16,
-		0x00ff00,
-		0x00ff00,
-		false
-	);
+	//DrawSphere3D(
+	//	VAdd(pos_, endCapsulePos_),
+	//	capsuleRadius_,
+	//	16,
+	//	0x00ff00,
+	//	0x00ff00,
+	//	false
+	//);
 
-	
+	//
 
 }
 
