@@ -53,8 +53,8 @@ void Calender::InitLoad(void)
 
 void Calender::InitTransform(void)
 {
-	pos_ = { -2006.825439f,180.0f,-1090.455444f };
-	scale_ = { 0.7f,0.7f,0.7f };
+	pos_ = { -1589.290527f,180.0f,-1090.300781f };
+	scale_ = { 0.9f,0.9f,0.9f };
 	angle_ = { 0.0f,180.0f * DX_PI_F / 180.0f,0.0f };
 
 	for (int i = 0; i < static_cast<int>(Calender::CALENDER::MAX); i++)

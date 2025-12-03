@@ -128,7 +128,10 @@ void ActorBase::Draw(void)
 		false
 	);
 
-	
+	if (isIhen_)
+	{
+		DrawFormatString(0, 200, 0xFF0000, "異変オブジェクトの座標 %f.2,%f.2,%f.2", pos_.x, pos_.y, pos_.z);
+	}
 
 }
 

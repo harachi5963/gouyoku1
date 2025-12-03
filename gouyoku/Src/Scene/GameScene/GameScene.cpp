@@ -28,6 +28,7 @@
 #include "../../Object/Actor/Object/Projector.h"
 #include "../../Object/Actor/Object/Tokei.h"
 #include "../../Object/Actor/Object/Plastic bottle.h"
+#include "../../Object/Actor/Object/Signboard.h"
 
 #include "../../Utility/AsoUtility.h"
 #include "../../Input/InputManager.h"
@@ -96,11 +97,13 @@ void GameScene::Load(void)
 	ActorBase* howaitoboudo = new Howaitoboudo();
 	ActorBase* projector = new Projector();							//プロジェクター
 	ActorBase* tokei = new Tokei();
+	ActorBase* signboard = new Signboard();
 
 	Calender* calender = new Calender();
 	Plasticbottle* plasticbottle = new Plasticbottle();
 
 	setumei_ = LoadGraph("Data/Image/setumei.png");
+
 
 	//机を生成
 	Desuku* desuku1 = new Desuku();
@@ -177,6 +180,7 @@ void GameScene::Load(void)
 	allActor_.push_back(projector);
 	allActor_.push_back(howaitoboudo);
 	allActor_.push_back(tokei);
+	allActor_.push_back(signboard);
 	allActor_.push_back(desuku1);
 	allActor_.push_back(desuku2);
 	allActor_.push_back(desuku3);
@@ -257,7 +261,7 @@ void GameScene::Draw(void)
 	// ステージ描画
 	stage_->Draw();
 
-	DrawFormatString(0, 100, 0xFFFFFF, isIhen_ ? "異変あり" : "異変なし");
+	//DrawFormatString(0, 100, 0xFFFFFF, isIhen_ ? "異変あり" : "異変なし");
 
 	// 全てのアクターを回す
 	for (auto actor : allActor_)

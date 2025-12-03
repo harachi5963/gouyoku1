@@ -42,11 +42,7 @@
     <ClCompile Include="Src\Object\Actor\Object\Plastic bottle.cpp" />
     <ClCompile Include="Src\Object\Actor\Object\Moerugomi\Moerugomi.cpp" />
     <ClCompile Include="Src\Object\Actor\Object\Howaitoboudo\Howaitoboudo.cpp" />
-<<<<<<< HEAD
     <ClCompile Include="Src\Object\Actor\Object\pettobotorugomi.cpp" />
-=======
-    <ClCompile Include="Src\Object\Actor\Object\Signboard.cpp" />
->>>>>>> Taku
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Audio\AudioManager.h" />
@@ -186,12 +182,8 @@
     <ClCompile Include="Src\Object\Actor\Object\Tirasi.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-<<<<<<< HEAD
     <ClInclude Include="Src\Object\pettobotorugomi.h" />
     <ClInclude Include="Src\Object\Actor\Object\pettobotorugomi.h" />
-=======
-    <ClInclude Include="Src\Object\Actor\Object\Signboard.h" />
->>>>>>> Taku
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Application.h">
