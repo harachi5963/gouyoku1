@@ -215,6 +215,15 @@ void GameScene::LoadEnd(void)
 		actor->LoadEnd();
 	}
 
+	// フォグを有効にする
+	SetFogEnable(true);
+
+	// フォグの色を黄色にする
+	SetFogColor(0, 0, 0);
+
+	// フォグの開始距離を０、終了距離を１５００にする
+	SetFogStartEnd(0.0f, 3000.0f);
+
 	AudioManager::GetInstance()->PlayBGM(SoundID::BGM_BATTLE);
 }
 

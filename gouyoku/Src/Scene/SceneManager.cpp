@@ -54,7 +54,7 @@ void SceneManager::Init3D(void)
 	SetUseLighting(true);
 
 	// 正面から斜め下に向かったライト
-	ChangeLightTypeDir({ 0.00f, 1.00f, 1.00f });
+	ChangeLightTypeDir({ 0.4f, 1.2f, 1.6f });
 }
 
 // 更新
@@ -79,7 +79,7 @@ void SceneManager::Update(void)
 	// 通常の更新処理
 	else
 	{
-		ChangeLightTypeDir({ testX_, testY_, testZ_ });
+		/*ChangeLightTypeDir({ testX_, testY_, testZ_ });
 
 		if (InputManager::GetInstance()->IsTrgDown(KEY_INPUT_1))
 		{
@@ -108,7 +108,7 @@ void SceneManager::Update(void)
 		if (InputManager::GetInstance()->IsTrgDown(KEY_INPUT_6))
 		{
 			testZ_ -= 0.1f;
-		}
+		}*/
 		// 現在のシーンの更新
 		scene_->Update();
 	}
