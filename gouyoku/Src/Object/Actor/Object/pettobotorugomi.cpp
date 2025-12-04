@@ -12,7 +12,6 @@ Pettobotorugomi::~Pettobotorugomi()
 
 void Pettobotorugomi::InitLoad(void)
 {
-	//tag_ = TAG::IHEN_OBJECT;
 	modelId_ = MV1LoadModel("Data/object/PlasticBottleTrashCan/pettobotorugomi.mv1");
 }
 

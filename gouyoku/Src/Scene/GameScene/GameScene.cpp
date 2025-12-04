@@ -253,7 +253,7 @@ void GameScene::Draw(void)
 	// ステージ描画
 	stage_->Draw();
 
-	//DrawFormatString(0, 100, 0xFFFFFF, isIhen_ ? "異変あり" : "異変なし");
+	DrawFormatString(0, 100, 0xFFFFFF, isIhen_ ? "異変あり" : "異変なし");
 
 	// 全てのアクターを回す
 	for (auto actor : allActor_)

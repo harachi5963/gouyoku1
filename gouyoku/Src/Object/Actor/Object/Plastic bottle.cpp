@@ -25,7 +25,7 @@ void Plasticbottle::Release(void)
 
 void Plasticbottle::InitLoad(void)
 {
-	tag_ = TAG::IHEN_OBJECT;
+	//tag_ = TAG::IHEN_OBJECT; 
 	modelId_ = MV1LoadModel("Data/object/Plastic bottle/pettobotoru.mv1");
 }
 
