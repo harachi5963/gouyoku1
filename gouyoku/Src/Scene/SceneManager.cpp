@@ -54,7 +54,7 @@ void SceneManager::Init3D(void)
 	SetUseLighting(true);
 
 	// 正面から斜め下に向かったライト
-	ChangeLightTypeDir({ 0.100000f, 0.500000f, 0.600000f });
+	ChangeLightTypeDir({ 0.4f, 1.2f, 1.6f });
 }
 
 // 更新

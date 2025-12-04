@@ -21,6 +21,16 @@ void Player::InitLoad(void)
 {
 	// モデルの読み込み
 	modelId_ = MV1LoadModel((Application::PATH_MODEL + "Player/Player.mv1").c_str());
+
+	// モデルの上側にポイントタイプのライトを作成
+	LightHandle = CreatePointLightHandle(
+		VGet(320.0f, 1000.0f, 600.0f),
+		5000.0f,
+		0.0f,
+		0.002f,
+		0.0f);
+
+	SetLightPositionHandle(LightHandle, pos_);
 }
 
 void Player::InitTransform(void)
@@ -86,6 +96,7 @@ void Player::Update(void)
 
 	// アニメーションの更新
 	animationController_->Update();
+	SetLightPositionHandle(LightHandle, pos_);
 }
 
 void Player::Draw(void)
@@ -103,6 +114,9 @@ void Player::Draw(void)
 void Player::Release(void)
 {
 	ActorBase::Release();
+
+	// ライトハンドルの削除
+	DeleteLightHandle(LightHandle);
 }
 
 void Player::Move(void)
