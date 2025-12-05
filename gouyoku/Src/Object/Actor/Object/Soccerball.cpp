@@ -22,7 +22,7 @@ void Soccerball::InitLoad(void)
 
 void Soccerball::InitTransform(void)
 {
-	pos_ = { 1375.0f,123.0f,-311.0f };
+	pos_ = { 360.0f,123.0f,-311.0f };
 	scale_ = { 0.3f,0.3f,0.3f };
 	angle_ = { 0.0f,0.0f,0.0f };
 

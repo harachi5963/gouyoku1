@@ -24,9 +24,9 @@ void Player::InitLoad(void)
 
 	// モデルの上側にポイントタイプのライトを作成
 	LightHandle = CreatePointLightHandle(
-		VGet(320.0f, 1000.0f, 600.0f),
-		5000.0f,
-		0.0f,
+		VGet(320.0f, 1500.0f, 600.0f),
+		10000.0f,
+		0.3f,
 		0.002f,
 		0.0f);
 
