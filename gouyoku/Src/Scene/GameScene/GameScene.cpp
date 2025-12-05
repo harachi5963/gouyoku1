@@ -109,7 +109,7 @@ void GameScene::Load(void)
 	Desuku* desuku1 = new Desuku();
 	desuku1->SetDesuku(
 		"Data/object/Desuku/desuku.mv1",
-		{ 1195.352f,0.000122f,-340.0f },
+		{ 250.352f,0.000122f,-340.0f },
 		{ 5.0f, 2.5f, 3.5f },
 		{ 0.0f,300.0f,0.0f }
 	);
