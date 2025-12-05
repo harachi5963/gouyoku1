@@ -104,6 +104,7 @@ void GameScene::Load(void)
 
 	setumei_ = LoadGraph("Data/Image/setumei.png");
 
+
 	//机を生成
 	Desuku* desuku1 = new Desuku();
 	desuku1->SetDesuku(
@@ -129,14 +130,7 @@ void GameScene::Load(void)
 		{ 5.0f, 2.5f, 3.5f },
 		{ 0.0f,300.0f,0.0f }
 	);
-	//机を生成
-	Desuku* desuku4 = new Desuku();
-	desuku4->SetDesuku(
-		"Data/object/Desuku/desuku.mv1",
-		{ 305.352f,0.000122f,-190.0f },
-		{ 1.5f, 2.5f, 1.5f },
-		{ 0.0f,300.0f,0.0f }
-	);
+	
 	//椅子を生成
 	Chair* chair1 = new Chair();
 	chair1->SetChair(
@@ -183,7 +177,6 @@ void GameScene::Load(void)
 	allActor_.push_back(desuku1);
 	allActor_.push_back(desuku2);
 	allActor_.push_back(desuku3);
-	allActor_.push_back(desuku4);
 	allActor_.push_back(chair1);
 	allActor_.push_back(chair2);
 	allActor_.push_back(chair3);
@@ -221,6 +214,15 @@ void GameScene::LoadEnd(void)
 		// 読み込み
 		actor->LoadEnd();
 	}
+
+	// フォグを有効にする
+	SetFogEnable(true);
+
+	// フォグの色を黄色にする
+	SetFogColor(0, 0, 0);
+
+	// フォグの開始距離を０、終了距離を１５００にする
+	SetFogStartEnd(0.0f, 3000.0f);
 
 	AudioManager::GetInstance()->PlayBGM(SoundID::BGM_BATTLE);
 }
@@ -268,7 +270,6 @@ void GameScene::Draw(void)
 		// 更新処理
 		actor->Draw();
 	}
-
 	// 説明文の描画
 	DrawRotaGraph(875, 80, 0.2f, 0.0, setumei_, true);
 }

@@ -58,4 +58,6 @@ private:
 private:
 	// ƒJƒƒ‰
 	Camera* camera_;
+
+	int LightHandle;
 };

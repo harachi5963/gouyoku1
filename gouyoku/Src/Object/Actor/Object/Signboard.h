@@ -30,7 +30,7 @@ public:
 	void Release(void) override;
 
 private:
-
+	int signTexture;
 	// リソースロード
 	void InitLoad(void) override;
 

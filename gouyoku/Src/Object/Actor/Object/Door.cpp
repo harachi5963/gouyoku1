@@ -37,7 +37,7 @@ void Door::Update(void)
 
 void Door::Draw(void)
 {
-	DrawSphere3D(pos_, sphereRadius_, 16, 0xff0000, 0xff0000, false);
+	//DrawSphere3D(pos_, sphereRadius_, 16, 0xff0000, 0xff0000, false);
 
 	ActorBase::Draw();
 }
