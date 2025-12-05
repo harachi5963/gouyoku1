@@ -27,6 +27,7 @@ void Desuku::InitPost(void)
 {
 	isCollision_ = true;
 	sphereRadius_ = 300.0f;
+
 }
 
 void Desuku::SetDesuku(const TCHAR* path, VECTOR pos, VECTOR scl, VECTOR angle)

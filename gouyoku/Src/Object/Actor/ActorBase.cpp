@@ -61,6 +61,9 @@ void ActorBase::LoadEnd(void)
 
 	// ‰Šú‰»
 	Init();
+
+	// Õ“Ë”»’èî•ñ‚Ì\’z
+	MV1SetupCollInfo(modelId_, -1);
 }
 
 void ActorBase::Update(void)
@@ -149,6 +152,17 @@ void ActorBase::CollisionStage(const VECTOR& pos)
 	pos_ = pos;
 	jumpPow_ = 0.0f;
 }
+
+void ActorBase::CollisionObject(const VECTOR& pos)
+{
+
+}
+
+int ActorBase::GetModelId(void)
+{
+	return modelId_;
+}
+
 
 void ActorBase::Move(void)
 {

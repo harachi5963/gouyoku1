@@ -500,12 +500,73 @@ void GameScene::FieldCollision(ActorBase* actor)
 
 void GameScene::WallCollision(ActorBase* actor)
 {
+	//------ プレイヤーの情報 ---------//
 	// 座標を取得
 	VECTOR pos = actor->GetPos();
 
 	// カプセルの座標
 	VECTOR capStartPos = VAdd(pos, actor->GetStartCapsulePos());
 	VECTOR capEndPos = VAdd(pos, actor->GetEndCapsulePos());
+	//-----------------------------------//
+	
+	// 全てのオブジェクトを検索
+	for (auto object : allActor_)
+	{
+		// 異変オブジェクトなら当たる
+		if (object->GetTag() == ActorBase::TAG::IHEN_OBJECT)
+		{
+			// カプセルとの当たり判定
+			auto hits = MV1CollCheck_Capsule
+			(
+				object->GetModelId(),			// ステージのモデルID
+				-1,								// ステージ全てのポリゴンを指定
+				capStartPos,					// カプセルの上
+				capEndPos,						// カプセルの下
+				actor->GetCapsuleRadius()		// カプセルの半径
+			);
+
+			// 衝突したポリゴン全ての検索
+			for (int i = 0; i < hits.HitNum; i++)
+			{
+				// ポリゴンを1枚に分割
+				auto hit = hits.Dim[i];
+
+				// ポリゴン検索を制限(全てを検索すると重いので)
+				for (int tryCnt = 0; tryCnt < 10; tryCnt++)
+				{
+					// 最初の衝突判定で検出した衝突ポリゴン1枚と衝突判定を取る
+					int pHit = HitCheck_Capsule_Triangle
+					(
+						capStartPos,					// カプセルの上
+						capEndPos,						// カプセルの下
+						actor->GetCapsuleRadius(),		// カプセルの半径
+						hit.Position[0],				// ポリゴン1
+						hit.Position[1],				// ポリゴン2
+						hit.Position[2]					// ポリゴン3
+					);
+
+					// カプセルとポリゴンが当たっていた
+					if (pHit)
+					{
+						// 当たっていたので座標をポリゴンの法線方向に移動させる
+						pos = VAdd(pos, VScale(hit.Normal, 1.0f));
+
+						// 球体の座標も移動させる
+						capStartPos = VAdd(capStartPos, VScale(hit.Normal, 1.0f));
+						capEndPos = VAdd(capEndPos, VScale(hit.Normal, 1.0f));
+
+						// 複数当たっている可能性があるので再検索
+						continue;
+					}
+				}
+			}
+			// 検出したポリゴン情報の後始末
+			MV1CollResultPolyDimTerminate(hits);
+
+			// 計算した場所にアクターを戻す
+			actor->CollisionStage(pos);
+		}
+	}
 
 	// カプセルとの当たり判定
 	auto hits = MV1CollCheck_Capsule
@@ -557,4 +618,11 @@ void GameScene::WallCollision(ActorBase* actor)
 
 	// 計算した場所にアクターを戻す
 	actor->CollisionStage(pos);
+}
+
+void GameScene::ObjectCollision(ActorBase* actor)
+{
+	// 座標を所得
+	VECTOR actorPos = actor->GetPos();
+
 }

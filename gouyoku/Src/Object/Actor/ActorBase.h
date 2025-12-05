@@ -52,6 +52,11 @@ public:
 	// ステージと衝突
 	void CollisionStage(const VECTOR& pos);
 
+	void CollisionObject(const VECTOR& pos);
+
+	// ステージモデルのハンドルID
+	int GetModelId(void);
+
 protected:
 
 	// アニメーション制御
