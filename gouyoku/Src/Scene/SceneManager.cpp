@@ -129,7 +129,7 @@ void SceneManager::Draw(void)
 		scene_->Draw();
 	}
 
-	DrawFormatString(0, 0, 0xffffff, "X = %f.2, Y = %f.2, Z = %f.2", testX_, testY_, testZ_);
+	//DrawFormatString(0, 0, 0xffffff, "X = %f.2, Y = %f.2, Z = %f.2", testX_, testY_, testZ_);
 }
 
 void SceneManager::Delete(void)
