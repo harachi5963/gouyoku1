@@ -31,7 +31,7 @@ void Kasatate::InitLoad(void)
 
 void Kasatate::InitTransform(void)
 {
-	pos_ = { -1843.069336f,0.000022f,720.800 };
+	pos_ = { -1860.069336f,0.022f,765.0 };
 	scale_ = { 0.4f,0.7f,0.4f };
 	angle_ = { 0.0f,0.0f,0.0f };
 
