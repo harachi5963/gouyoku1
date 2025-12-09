@@ -43,7 +43,6 @@
     <ClCompile Include="Src\Object\Actor\Object\Desuku.cpp" />
     <ClCompile Include="Src\Object\Actor\Object\Door.cpp" />
     <ClCompile Include="Src\Object\Actor\Object\Door2.cpp" />
-    <ClCompile Include="Src\Object\Actor\Object\Pc.cpp" />
     <ClCompile Include="Src\Object\Actor\Object\VendingMachine.cpp" />
     <ClCompile Include="Src\Scene\GameScene\GameScene.cpp" />
     <ClCompile Include="Src\Scene\Loading\Loading.cpp" />
@@ -89,7 +88,6 @@
     <ClInclude Include="Src\Object\Actor\Object\Desuku.h" />
     <ClInclude Include="Src\Object\Actor\Object\Door.h" />
     <ClInclude Include="Src\Object\Actor\Object\Door2.h" />
-    <ClInclude Include="Src\Object\Actor\Object\Pc.h" />
     <ClInclude Include="Src\Object\Actor\Object\VendingMachine.h" />
     <ClInclude Include="Src\Scene\GameScene\GameScene.h" />
     <ClInclude Include="Src\Scene\Loading\Loading.h" />

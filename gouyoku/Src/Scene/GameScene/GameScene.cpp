@@ -8,7 +8,6 @@
 #include "../../Object/Actor/ActorBase.h"
 #include "../../Object/Actor/Player/Player.h"
 #include "../../Object/Actor/Enemy/Enemy.h"
-#include "../../Object/Actor/Object/Pc.h"
 #include "../../Object/Actor/Stage/Stage.h"
 #include "../../Object/Actor/Object/VendingMachine.h"
 #include "../../Object/Actor/Object/Basketball.h"
@@ -89,7 +88,6 @@ void GameScene::Load(void)
 	ActorBase* soccerball = new Soccerball();						// ドアを生成
 	ActorBase* tenisuball = new Tenisuball();						// ドアを生成
 	ActorBase* volleyball = new Volleyball();						// ドアを生成
-	ActorBase* pc = new Pc();										// ドアを生成
 	ActorBase* tirasi = new Tirasi();								// チラシを生成
 	ActorBase* kasatate = new Kasatate();
 	ActorBase* moerugomi = new Moerugomi();
@@ -109,7 +107,7 @@ void GameScene::Load(void)
 	Desuku* desuku1 = new Desuku();
 	desuku1->SetDesuku(
 		"Data/object/Desuku/desuku.mv1",
-		{ 1195.352f,0.000122f,-340.0f },
+		{ 250.352f,0.000122f,-340.0f },
 		{ 5.0f, 2.5f, 3.5f },
 		{ 0.0f,300.0f,0.0f }
 	);
@@ -164,7 +162,6 @@ void GameScene::Load(void)
 	allActor_.push_back(soccerball);
 	allActor_.push_back(tenisuball);
 	allActor_.push_back(volleyball);
-	allActor_.push_back(pc);
 	allActor_.push_back(tirasi);
 	allActor_.push_back(calender);
 	allActor_.push_back(kasatate);
@@ -247,6 +244,7 @@ void GameScene::Update(void)
 			// 当たり判定
 			FieldCollision(actor);
 			WallCollision(actor);
+			ObjectCollision(actor);
 		}
 	}
 
@@ -262,7 +260,7 @@ void GameScene::Draw(void)
 	// ステージ描画
 	stage_->Draw();
 
-	DrawFormatString(0, 100, 0xFFFFFF, isIhen_ ? "異変あり" : "異変なし");
+	//DrawFormatString(0, 100, 0xFFFFFF, isIhen_ ? "異変あり" : "異変なし");
 
 	// 全てのアクターを回す
 	for (auto actor : allActor_)
@@ -500,12 +498,14 @@ void GameScene::FieldCollision(ActorBase* actor)
 
 void GameScene::WallCollision(ActorBase* actor)
 {
+	//------ プレイヤーの情報 ---------//
 	// 座標を取得
 	VECTOR pos = actor->GetPos();
 
 	// カプセルの座標
 	VECTOR capStartPos = VAdd(pos, actor->GetStartCapsulePos());
 	VECTOR capEndPos = VAdd(pos, actor->GetEndCapsulePos());
+	//-----------------------------------//
 
 	// カプセルとの当たり判定
 	auto hits = MV1CollCheck_Capsule
@@ -557,4 +557,72 @@ void GameScene::WallCollision(ActorBase* actor)
 
 	// 計算した場所にアクターを戻す
 	actor->CollisionStage(pos);
+}
+
+void GameScene::ObjectCollision(ActorBase* actor)
+{
+	//------ プレイヤーの情報 ---------//
+	// 座標を取得
+	VECTOR pos = actor->GetPos();
+
+	// カプセルの座標
+	VECTOR capStartPos = VAdd(pos, actor->GetStartCapsulePos());
+	VECTOR capEndPos = VAdd(pos, actor->GetEndCapsulePos());
+	//-----------------------------------//
+
+	// 全てのオブジェクトを検索
+	for (auto object : allActor_)
+	{
+		// カプセルとの当たり判定
+		auto hits = MV1CollCheck_Capsule
+		(
+			object->GetModelId(),			// ステージのモデルID
+			-1,								// ステージ全てのポリゴンを指定
+			capStartPos,					// カプセルの上
+			capEndPos,						// カプセルの下
+			actor->GetCapsuleRadius()		// カプセルの半径
+		);
+
+		// 衝突したポリゴン全ての検索
+		for (int i = 0; i < hits.HitNum; i++)
+		{
+			// ポリゴンを1枚に分割
+			auto hit = hits.Dim[i];
+
+			// ポリゴン検索を制限(全てを検索すると重いので)
+			for (int tryCnt = 0; tryCnt < 10; tryCnt++)
+			{
+				// 最初の衝突判定で検出した衝突ポリゴン1枚と衝突判定を取る
+				int pHit = HitCheck_Capsule_Triangle
+				(
+					capStartPos,					// カプセルの上
+					capEndPos,						// カプセルの下
+					actor->GetCapsuleRadius(),		// カプセルの半径
+					hit.Position[0],				// ポリゴン1
+					hit.Position[1],				// ポリゴン2
+					hit.Position[2]					// ポリゴン3
+				);
+
+				// カプセルとポリゴンが当たっていた
+				if (pHit)
+				{
+					// 当たっていたので座標をポリゴンの法線方向に移動させる
+					pos = VAdd(pos, VScale(hit.Normal, 1.0f));
+
+					// 球体の座標も移動させる
+					capStartPos = VAdd(capStartPos, VScale(hit.Normal, 1.0f));
+					capEndPos = VAdd(capEndPos, VScale(hit.Normal, 1.0f));
+
+					// 複数当たっている可能性があるので再検索
+					continue;
+				}
+			}
+		}
+
+		// 検出したポリゴン情報の後始末
+		MV1CollResultPolyDimTerminate(hits);
+
+		// 計算した場所にアクターを戻す
+		actor->CollisionStage(pos);
+	}
 }
