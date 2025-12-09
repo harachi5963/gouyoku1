@@ -77,4 +77,6 @@ void Calender::InitPost(void)
 	isCollision_ = true;
 	sphereRadius_ = 100.0f;
 	nowCalender_ = CALENDER::JAN;
+
+
 }

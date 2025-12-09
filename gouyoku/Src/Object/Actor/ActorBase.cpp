@@ -62,6 +62,10 @@ void ActorBase::LoadEnd(void)
 	// ‰Šú‰»
 	Init();
 
+	// ƒ‚ƒfƒ‹‚ÉÀ•W‚ğİ’è‚·‚é
+	MV1SetPosition(modelId_, pos_);
+	MV1SetPosition(ihenModelId_, pos_);
+
 	// Õ“Ë”»’èî•ñ‚Ì\’z
 	MV1SetupCollInfo(modelId_, -1);
 }
@@ -113,14 +117,14 @@ void ActorBase::Draw(void)
 		MV1DrawModel(modelId_);
 	}
 
-	//DrawSphere3D(
-	//	VAdd(pos_,startCapsulePos_),
-	//	capsuleRadius_,
-	//	16,
-	//	0x00ff00,
-	//	0x00ff00,
-	//	false
-	//);
+	DrawSphere3D(
+	pos_,
+		100,
+		16,
+		0x00ff00,
+		0x00ff00,
+		false
+	);
 
 	//DrawSphere3D(
 	//	VAdd(pos_, endCapsulePos_),

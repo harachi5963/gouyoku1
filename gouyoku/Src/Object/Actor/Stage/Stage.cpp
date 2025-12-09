@@ -42,9 +42,9 @@ void Stage::Load(void)
 void Stage::LoadEnd(void)
 {
 	// Õ“Ë”»’èî•ñ‚Ì\’z
-	MV1SetupCollInfo(modelId_, -1);
-
 	Init();
+
+	MV1SetupCollInfo(modelId_, -1);
 }
 
 void Stage::Update(void)

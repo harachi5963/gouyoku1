@@ -79,7 +79,7 @@ void Player::InitPost(void)
 	// “–‚½‚è”»’è‚ğì¬
 	startCapsulePos_ = { 0.0f,110,0.0f };
 	endCapsulePos_ = { 0.0f,30.0f,0.0f };
-	capsuleRadius_ = 20.0f;
+	capsuleRadius_ = 60.0f;
 
 	sphereRadius_ = 20.0f;
 

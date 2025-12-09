@@ -21,6 +21,7 @@ void Kasatate::Draw(void)
 void Kasatate::Release(void)
 {
 	ActorBase::Release();
+
 }
 
 void Kasatate::InitLoad(void)
@@ -47,4 +48,6 @@ void Kasatate::InitPost(void)
 {
 	isCollision_ = true;
 	sphereRadius_ = 20.0f;
+
+
 }
