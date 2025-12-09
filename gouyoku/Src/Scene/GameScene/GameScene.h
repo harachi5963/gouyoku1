@@ -55,4 +55,7 @@ private:
 
 	// 衝突判定(壁)
 	void WallCollision(ActorBase* actor);
+
+	//オブジェクトとの判定
+	void ObjectCollision(ActorBase* actor);
 };

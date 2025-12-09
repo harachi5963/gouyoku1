@@ -28,9 +28,6 @@ void Stage::Init(void)
 	//	MV1SetMaterialEmiColor(modelId_, i, GetColorF(0.2f, 0.2f, 0.2f, 1.0f));
 	//}
 
-	// Õ“Ë”»’èî•ñ‚Ì\’z
-	MV1SetupCollInfo(modelId_, -1);
-
 //	//©ŒÈ”­s
 	//MV1SetMaterialAmbColor(modelId_, 0, EMI_COLOR);
 	//MV1SetMaterialDifColor(modelId_, 0, EMI_COLOR);
@@ -44,7 +41,10 @@ void Stage::Load(void)
 
 void Stage::LoadEnd(void)
 {
+	// Õ“Ë”»’èî•ñ‚Ì\’z
 	Init();
+
+	MV1SetupCollInfo(modelId_, -1);
 }
 
 void Stage::Update(void)

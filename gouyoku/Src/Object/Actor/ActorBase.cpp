@@ -61,6 +61,13 @@ void ActorBase::LoadEnd(void)
 
 	// èâä˙âª
 	Init();
+
+	// ÉÇÉfÉãÇ…ç¿ïWÇê›íËÇ∑ÇÈ
+	MV1SetPosition(modelId_, pos_);
+	MV1SetPosition(ihenModelId_, pos_);
+
+	// è’ìÀîªíËèÓïÒÇÃç\íz
+	MV1SetupCollInfo(modelId_, -1);
 }
 
 void ActorBase::Update(void)
@@ -110,14 +117,14 @@ void ActorBase::Draw(void)
 		MV1DrawModel(modelId_);
 	}
 
-	//DrawSphere3D(
-	//	VAdd(pos_,startCapsulePos_),
-	//	capsuleRadius_,
-	//	16,
-	//	0x00ff00,
-	//	0x00ff00,
-	//	false
-	//);
+	DrawSphere3D(
+	pos_,
+		100,
+		16,
+		0x00ff00,
+		0x00ff00,
+		false
+	);
 
 	//DrawSphere3D(
 	//	VAdd(pos_, endCapsulePos_),
@@ -149,6 +156,17 @@ void ActorBase::CollisionStage(const VECTOR& pos)
 	pos_ = pos;
 	jumpPow_ = 0.0f;
 }
+
+void ActorBase::CollisionObject(const VECTOR& pos)
+{
+
+}
+
+int ActorBase::GetModelId(void)
+{
+	return modelId_;
+}
+
 
 void ActorBase::Move(void)
 {
