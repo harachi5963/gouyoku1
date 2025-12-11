@@ -7,6 +7,7 @@
 #include "../../Common/AnimationController.h"
 
 #include "../../../Camera/Camera.h"
+#include "../../../Audio/AudioManager.h"
 
 Player::Player(Camera* camera)
 {
@@ -152,6 +153,8 @@ void Player::Move(void)
 
 	if (!AsoUtility::EqualsVZero(dir))
 	{
+		AudioManager::GetInstance()->PlaySE(SoundID::SE_WORK);
+
 		// “ü—Í’l‚Ì•âŠÔ
 		const float SMOOTH = 0.25f; // ¬‚³‚¢‚Ù‚ÇŠµ«‚ª‹­‚¢
 		dir.x = preInputDir_.x + (dir.x - preInputDir_.x) * SMOOTH;

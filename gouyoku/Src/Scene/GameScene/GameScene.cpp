@@ -195,8 +195,6 @@ void GameScene::Load(void)
 	}
 
 	AudioManager::GetInstance()->LoadSceneSound(LoadScene::GAME);
-
-	AudioManager::GetInstance()->LoadSceneSound(LoadScene::GAME);
 }
 
 void GameScene::LoadEnd(void)
@@ -223,6 +221,7 @@ void GameScene::LoadEnd(void)
 	// ƒtƒHƒO‚ÌŠJŽn‹——£‚ð‚OAI—¹‹——£‚ð‚P‚T‚O‚O‚É‚·‚é
 	SetFogStartEnd(0.0f, 3000.0f);
 
+	AudioManager::GetInstance()->SetBgmVolume(127);
 	AudioManager::GetInstance()->PlayBGM(SoundID::BGM_BATTLE);
 }
 
