@@ -107,7 +107,7 @@ void GameScene::Load(void)
 	Desuku* desuku1 = new Desuku();
 	desuku1->SetDesuku(
 		"Data/object/Desuku/desuku.mv1",
-		{ 250.352f,0.000122f,-340.0f },
+		{ 250.352f,0.000122f,-320.0f },
 		{ 5.0f, 2.5f, 3.5f },
 		{ 0.0f,300.0f,0.0f }
 	);
@@ -116,7 +116,7 @@ void GameScene::Load(void)
 	Desuku* desuku2 = new Desuku();
 	desuku2->SetDesuku(
 		"Data/object/Desuku/desuku.mv1",
-		{ 895.352f,0.000122f,-340.0f },
+		{ 870.352f,0.000122f,-320.0f },
 		{ 5.5f, 2.5f, 3.5f },
 		{ 0.0f,300.0f,0.0f }
 	);
@@ -124,7 +124,7 @@ void GameScene::Load(void)
 	Desuku* desuku3 = new Desuku();
 	desuku3->SetDesuku(
 		"Data/object/Desuku/desuku.mv1",
-		{ 595.352f,0.000122f,-340.0f },
+		{ 560.352f,0.000122f,-320.0f },
 		{ 5.0f, 2.5f, 3.5f },
 		{ 0.0f,300.0f,0.0f }
 	);
