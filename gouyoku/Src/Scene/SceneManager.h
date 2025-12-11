@@ -67,6 +67,10 @@ public:
 
 private:
 
+	float testX_ = 0.00f;
+	float testY_ = 0.00f;
+	float testZ_ = 0.00f;
+
 	// ŠeíƒV[ƒ“
 	SceneBase* scene_;
 

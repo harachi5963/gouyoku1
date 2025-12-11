@@ -12,7 +12,8 @@ public:
 		PLAYER,
 		HUMAN,
 		IHEN_OBJECT,
-		DOOR,
+		GO_DOOR,
+		RETURN_DOOR,
 		CALENDER,
 	};
 
@@ -50,6 +51,11 @@ public:
 
 	// ステージと衝突
 	void CollisionStage(const VECTOR& pos);
+
+	void CollisionObject(const VECTOR& pos);
+
+	// ステージモデルのハンドルID
+	int GetModelId(void);
 
 protected:
 

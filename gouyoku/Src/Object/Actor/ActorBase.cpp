@@ -61,6 +61,13 @@ void ActorBase::LoadEnd(void)
 
 	// 初期化
 	Init();
+
+	// モデルに座標を設定する
+	MV1SetPosition(modelId_, pos_);
+	MV1SetPosition(ihenModelId_, pos_);
+
+	// 衝突判定情報の構築
+	MV1SetupCollInfo(modelId_, -1);
 }
 
 void ActorBase::Update(void)
@@ -110,25 +117,29 @@ void ActorBase::Draw(void)
 		MV1DrawModel(modelId_);
 	}
 
-	DrawSphere3D(
-		VAdd(pos_,startCapsulePos_),
-		capsuleRadius_,
+	/*DrawSphere3D(
+	pos_,
+		100,
 		16,
 		0x00ff00,
 		0x00ff00,
 		false
-	);
+	);*/
 
-	DrawSphere3D(
-		VAdd(pos_, endCapsulePos_),
-		capsuleRadius_,
-		16,
-		0x00ff00,
-		0x00ff00,
-		false
-	);
+	//DrawSphere3D(
+	//	VAdd(pos_, endCapsulePos_),
+	//	capsuleRadius_,
+	//	16,
+	//	0x00ff00,
+	//	0x00ff00,
+	//	false
+	//);
 
-	
+	//
+	/*if (isIhen_)
+	{
+		DrawFormatString(0, 200, 0xFF0000, "異変オブジェクトの座標 %f.2,%f.2,%f.2", pos_.x, pos_.y, pos_.z);
+	}*/
 
 }
 
@@ -145,6 +156,17 @@ void ActorBase::CollisionStage(const VECTOR& pos)
 	pos_ = pos;
 	jumpPow_ = 0.0f;
 }
+
+void ActorBase::CollisionObject(const VECTOR& pos)
+{
+
+}
+
+int ActorBase::GetModelId(void)
+{
+	return modelId_;
+}
+
 
 void ActorBase::Move(void)
 {

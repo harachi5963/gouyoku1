@@ -111,7 +111,7 @@ void AudioManager::PlayBGM(SoundID id)
 	currentBgm_ = id;
 
 	// ŽÀ‰¹—Ê‚ðŒvŽZ
-	int volume = static_cast<int>(bgmVolume_ * (masterVolume_ / 255.0f));
+	int volume = static_cast<int>(bgmVolume_ * (masterVolume_ / 500.0f));
 
 	// ‰¹—Ê‚ð•ÏX
 	ChangeVolumeSoundMem(volume, it->second);

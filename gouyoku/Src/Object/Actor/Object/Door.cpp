@@ -25,7 +25,7 @@ void Door::InitAnimation(void)
 
 void Door::InitPost(void)
 {
-	tag_ = TAG::DOOR;
+	tag_ = TAG::RETURN_DOOR;
 	isCollision_ = false;
 	sphereRadius_ = 300.0f;
 }
@@ -37,7 +37,7 @@ void Door::Update(void)
 
 void Door::Draw(void)
 {
-	DrawSphere3D(pos_, sphereRadius_, 16, 0xff0000, 0xff0000, false);
+	//DrawSphere3D(pos_, sphereRadius_, 16, 0xff0000, 0xff0000, false);
 
 	ActorBase::Draw();
 }

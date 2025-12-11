@@ -8,7 +8,6 @@
 #include "../../Object/Actor/ActorBase.h"
 #include "../../Object/Actor/Player/Player.h"
 #include "../../Object/Actor/Enemy/Enemy.h"
-#include "../../Object/Actor/Object/Pc.h"
 #include "../../Object/Actor/Stage/Stage.h"
 #include "../../Object/Actor/Object/VendingMachine.h"
 #include "../../Object/Actor/Object/Basketball.h"
@@ -23,9 +22,12 @@
 #include "../../Object/Actor/Object/Chair.h"
 #include "../../Object/Actor/Object/Kasatate/Kasatate.h"
 #include "../../Object/Actor/Object/Moerugomi/Moerugomi.h"
+#include "../../Object/Actor/Object/pettobotorugomi.h"
 #include "../../Object/Actor/Object/Howaitoboudo/Howaitoboudo.h"
 #include "../../Object/Actor/Object/Projector.h"
 #include "../../Object/Actor/Object/Tokei.h"
+#include "../../Object/Actor/Object/Plastic bottle.h"
+#include "../../Object/Actor/Object/Signboard.h"
 
 #include "../../Utility/AsoUtility.h"
 #include "../../Input/InputManager.h"
@@ -47,6 +49,21 @@ void GameScene::Init(void)
 
 	// ステージ初期化
 	stage_->Init();
+
+	nowCalendar_ = 0;
+
+	// 異変をするか？
+	int ihenact = GetRand(1);
+
+	if (ihenact)
+	{
+		isIhen_ = true;
+
+	}
+	else
+	{
+		isIhen_ = false;
+	}
 
 	// 全てのアクターを初期化
 	for (auto actor : allActor_)
@@ -71,21 +88,26 @@ void GameScene::Load(void)
 	ActorBase* soccerball = new Soccerball();						// ドアを生成
 	ActorBase* tenisuball = new Tenisuball();						// ドアを生成
 	ActorBase* volleyball = new Volleyball();						// ドアを生成
-	ActorBase* pc = new Pc();										// ドアを生成
 	ActorBase* tirasi = new Tirasi();								// チラシを生成
 	ActorBase* kasatate = new Kasatate();
 	ActorBase* moerugomi = new Moerugomi();
+	ActorBase* pettobotorugomi = new Pettobotorugomi();
 	ActorBase* howaitoboudo = new Howaitoboudo();
 	ActorBase* projector = new Projector();							//プロジェクター
 	ActorBase* tokei = new Tokei();
+	ActorBase* signboard = new Signboard();
 
 	Calender* calender = new Calender();
+	Plasticbottle* plasticbottle = new Plasticbottle();
+
+	setumei_ = LoadGraph("Data/Image/setumei.png");
+
 
 	//机を生成
 	Desuku* desuku1 = new Desuku();
 	desuku1->SetDesuku(
 		"Data/object/Desuku/desuku.mv1",
-		{ 1195.352f,0.000122f,-340.0f },
+		{ 250.352f,0.000122f,-320.0f },
 		{ 5.0f, 2.5f, 3.5f },
 		{ 0.0f,300.0f,0.0f }
 	);
@@ -94,26 +116,19 @@ void GameScene::Load(void)
 	Desuku* desuku2 = new Desuku();
 	desuku2->SetDesuku(
 		"Data/object/Desuku/desuku.mv1",
-		{ 895.352f,0.000122f,-340.0f },
+		{ 870.352f,0.000122f,-320.0f },
 		{ 5.5f, 2.5f, 3.5f },
-	    { 0.0f,300.0f,0.0f }
+		{ 0.0f,300.0f,0.0f }
 	);
 	//机を生成
 	Desuku* desuku3 = new Desuku();
 	desuku3->SetDesuku(
 		"Data/object/Desuku/desuku.mv1",
-		{ 595.352f,0.000122f,-340.0f },
+		{ 560.352f,0.000122f,-320.0f },
 		{ 5.0f, 2.5f, 3.5f },
 		{ 0.0f,300.0f,0.0f }
 	);
-	//机を生成
-	Desuku* desuku4 = new Desuku();
-	desuku4->SetDesuku(
-		"Data/object/Desuku/desuku.mv1",
-		{ 305.352f,0.000122f,-190.0f },
-		{ 1.5f, 2.5f, 1.5f },
-		{ 0.0f,300.0f,0.0f }
-	);
+	
 	//椅子を生成
 	Chair* chair1 = new Chair();
 	chair1->SetChair(
@@ -147,21 +162,22 @@ void GameScene::Load(void)
 	allActor_.push_back(soccerball);
 	allActor_.push_back(tenisuball);
 	allActor_.push_back(volleyball);
-	allActor_.push_back(pc);
 	allActor_.push_back(tirasi);
 	allActor_.push_back(calender);
 	allActor_.push_back(kasatate);
 	allActor_.push_back(moerugomi);
+	allActor_.push_back(pettobotorugomi);
 	allActor_.push_back(projector);
 	allActor_.push_back(howaitoboudo);
 	allActor_.push_back(tokei);
+	allActor_.push_back(signboard);
 	allActor_.push_back(desuku1);
 	allActor_.push_back(desuku2);
 	allActor_.push_back(desuku3);
-	allActor_.push_back(desuku4);
 	allActor_.push_back(chair1);
 	allActor_.push_back(chair2);
 	allActor_.push_back(chair3);
+	allActor_.push_back(plasticbottle);
 
 
 	// カメラモード変更
@@ -196,6 +212,15 @@ void GameScene::LoadEnd(void)
 		actor->LoadEnd();
 	}
 
+	// フォグを有効にする
+	SetFogEnable(true);
+
+	// フォグの色を黄色にする
+	SetFogColor(0, 0, 0);
+
+	// フォグの開始距離を０、終了距離を１５００にする
+	SetFogStartEnd(0.0f, 3000.0f);
+
 	AudioManager::GetInstance()->PlayBGM(SoundID::BGM_BATTLE);
 }
 
@@ -219,6 +244,7 @@ void GameScene::Update(void)
 			// 当たり判定
 			FieldCollision(actor);
 			WallCollision(actor);
+			ObjectCollision(actor);
 		}
 	}
 
@@ -234,6 +260,7 @@ void GameScene::Draw(void)
 	// ステージ描画
 	stage_->Draw();
 
+	//DrawFormatString(0, 100, 0xFFFFFF, isIhen_ ? "異変あり" : "異変なし");
 
 	// 全てのアクターを回す
 	for (auto actor : allActor_)
@@ -241,6 +268,8 @@ void GameScene::Draw(void)
 		// 更新処理
 		actor->Draw();
 	}
+	// 説明文の描画
+	DrawRotaGraph(875, 80, 0.2f, 0.0, setumei_, true);
 }
 
 void GameScene::Release(void)
@@ -248,6 +277,8 @@ void GameScene::Release(void)
 	// ステージ解放
 	stage_->Release();
 	delete stage_;
+
+	DeleteGraph(setumei_);
 
 
 	// 全てのアクターを回す
@@ -295,44 +326,93 @@ void GameScene::isDoorCollision(void)
 	for (auto actor : allActor_)
 	{
 		// ドアじゃないなら判定しない
-		if (actor->GetTag() != ActorBase::TAG::DOOR)
+		if (actor->GetTag() == ActorBase::TAG::GO_DOOR ||
+			actor->GetTag() == ActorBase::TAG::RETURN_DOOR)
+		{
+			// オブジェクトとカメラが接触しているか？
+			if (AsoUtility::IsHitSpheres(
+				actor->GetPos(),
+				actor->GetSphereRadius(),
+				player->GetPos(),
+				player->GetSphereRadius()
+			))
+			{
+				// キーが押されているか？
+				if (InputManager::GetInstance()->IsTrgDown(KEY_INPUT_F))
+				{
+					// 進むドア
+					if (actor->GetTag() == ActorBase::TAG::GO_DOOR)
+					{
+						// 異変がある
+						if (isIhen_)
+						{
+							nowCalendar_++;
+						}
+						else
+						{
+							nowCalendar_ = 0;
+						}
+					}
+					// 戻るドア
+					else
+					{
+						// 異変がある
+						if (isIhen_)
+						{
+							nowCalendar_ = 0;
+						}
+						else
+						{
+							nowCalendar_++;
+						}
+					}
+
+					int ihenact = GetRand(1);
+
+					// 異変をするか？
+					if (ihenact)
+					{
+						isIhen_ = true;
+
+						// 異変のリセット
+						IhenObjectReSet();
+
+						// 異変がONならセットする
+						IhenObjectSet();
+					}
+					else
+					{
+						isIhen_ = false;
+
+						// 異変のリセット
+						IhenObjectReSet();
+
+					}
+
+					calender->SetCalender(static_cast<Calender::CALENDER>(nowCalendar_));
+
+					// カメラを初期位置に
+					player->Init();
+				}
+
+				//カレンダーがクリアになったら
+				if (nowCalendar_ == CLEAR_CALENDER)
+				{
+					//ゲームシーンへ
+					SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::CLEAR);
+					return;
+				}
+			}
+		}
+		else
 		{
 			// ドアじゃないのでこのオブジェクトをスキップ
 			continue;
 		}
-
-		// オブジェクトとカメラが接触しているか？
-		if (AsoUtility::IsHitSpheres(
-			actor->GetPos(),
-			actor->GetSphereRadius(),
-			player->GetPos(),
-			player->GetSphereRadius()
-		))
-		{
-			// キーが押されているか？
-			if (InputManager::GetInstance()->IsTrgDown(KEY_INPUT_F))
-			{
-				// カメラを初期位置に
-				player->Init();
-
-				// ドアを開いた
-				isDoorOpen();
-
-				calender->SetCalender(Calender::CALENDER::FEB);
-			}
-
-			//スペースキーが押されたら
-			if (InputManager::GetInstance()->IsTrgUp(KEY_INPUT_SPACE))
-			{
-				//ゲームシーンへ
-				SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::CLEAR);
-				return;
-			}
-		}
 	}
 }
 
-void GameScene::isDoorOpen(void)
+void GameScene::IhenObjectSet(void)
 {
 	//異変の数検索用
 	int ihenNum = 0;
@@ -369,6 +449,24 @@ void GameScene::isDoorOpen(void)
 	}
 }
 
+void GameScene::IhenObjectReSet(void)
+{
+	//異変の数検索用
+	int ihenNum = 0;
+
+	// 全てのオブジェクトを回す
+	for (auto actor : allActor_)
+	{
+		if (actor->GetTag() != ActorBase::TAG::IHEN_OBJECT)
+		{
+			// 異変オブジェクトじゃないのでスキップ
+			continue;
+		}
+
+		actor->SetIhen(false);
+	}
+}
+
 // ステージの床とプレイヤーの衝突
 void GameScene::FieldCollision(ActorBase* actor)
 {
@@ -400,12 +498,14 @@ void GameScene::FieldCollision(ActorBase* actor)
 
 void GameScene::WallCollision(ActorBase* actor)
 {
+	//------ プレイヤーの情報 ---------//
 	// 座標を取得
 	VECTOR pos = actor->GetPos();
 
 	// カプセルの座標
 	VECTOR capStartPos = VAdd(pos, actor->GetStartCapsulePos());
 	VECTOR capEndPos = VAdd(pos, actor->GetEndCapsulePos());
+	//-----------------------------------//
 
 	// カプセルとの当たり判定
 	auto hits = MV1CollCheck_Capsule
@@ -457,4 +557,72 @@ void GameScene::WallCollision(ActorBase* actor)
 
 	// 計算した場所にアクターを戻す
 	actor->CollisionStage(pos);
+}
+
+void GameScene::ObjectCollision(ActorBase* actor)
+{
+	//------ プレイヤーの情報 ---------//
+	// 座標を取得
+	VECTOR pos = actor->GetPos();
+
+	// カプセルの座標
+	VECTOR capStartPos = VAdd(pos, actor->GetStartCapsulePos());
+	VECTOR capEndPos = VAdd(pos, actor->GetEndCapsulePos());
+	//-----------------------------------//
+
+	// 全てのオブジェクトを検索
+	for (auto object : allActor_)
+	{
+		// カプセルとの当たり判定
+		auto hits = MV1CollCheck_Capsule
+		(
+			object->GetModelId(),			// ステージのモデルID
+			-1,								// ステージ全てのポリゴンを指定
+			capStartPos,					// カプセルの上
+			capEndPos,						// カプセルの下
+			actor->GetCapsuleRadius()		// カプセルの半径
+		);
+
+		// 衝突したポリゴン全ての検索
+		for (int i = 0; i < hits.HitNum; i++)
+		{
+			// ポリゴンを1枚に分割
+			auto hit = hits.Dim[i];
+
+			// ポリゴン検索を制限(全てを検索すると重いので)
+			for (int tryCnt = 0; tryCnt < 10; tryCnt++)
+			{
+				// 最初の衝突判定で検出した衝突ポリゴン1枚と衝突判定を取る
+				int pHit = HitCheck_Capsule_Triangle
+				(
+					capStartPos,					// カプセルの上
+					capEndPos,						// カプセルの下
+					actor->GetCapsuleRadius(),		// カプセルの半径
+					hit.Position[0],				// ポリゴン1
+					hit.Position[1],				// ポリゴン2
+					hit.Position[2]					// ポリゴン3
+				);
+
+				// カプセルとポリゴンが当たっていた
+				if (pHit)
+				{
+					// 当たっていたので座標をポリゴンの法線方向に移動させる
+					pos = VAdd(pos, VScale(hit.Normal, 1.0f));
+
+					// 球体の座標も移動させる
+					capStartPos = VAdd(capStartPos, VScale(hit.Normal, 1.0f));
+					capEndPos = VAdd(capEndPos, VScale(hit.Normal, 1.0f));
+
+					// 複数当たっている可能性があるので再検索
+					continue;
+				}
+			}
+		}
+
+		// 検出したポリゴン情報の後始末
+		MV1CollResultPolyDimTerminate(hits);
+
+		// 計算した場所にアクターを戻す
+		actor->CollisionStage(pos);
+	}
 }

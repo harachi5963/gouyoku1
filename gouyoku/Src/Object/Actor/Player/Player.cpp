@@ -21,6 +21,16 @@ void Player::InitLoad(void)
 {
 	// モデルの読み込み
 	modelId_ = MV1LoadModel((Application::PATH_MODEL + "Player/Player.mv1").c_str());
+
+	// モデルの上側にポイントタイプのライトを作成
+	LightHandle = CreatePointLightHandle(
+		VGet(320.0f, 1500.0f, 600.0f),
+		10000.0f,
+		0.3f,
+		0.002f,
+		0.0f);
+
+	SetLightPositionHandle(LightHandle, pos_);
 }
 
 void Player::InitTransform(void)
@@ -40,7 +50,7 @@ void Player::InitTransform(void)
 	MV1SetRotationMatrix(modelId_, mat);
 
 	// モデルの位置設定
-	pos_ = AsoUtility::VECTOR_ZERO;
+	pos_ = {-2117.643555f,0.000185f,-697.131470f};
 	MV1SetPosition(modelId_, pos_);
 }
 
@@ -67,8 +77,8 @@ void Player::InitPost(void)
 	tag_ = TAG::PLAYER;
 
 	// 当たり判定を作成
-	startCapsulePos_ = { 0.0f,110,0.0f };
-	endCapsulePos_ = { 0.0f,30.0f,0.0f };
+	startCapsulePos_ = { 0.0f,150,0.0f };
+	endCapsulePos_ = { 0.0f,0.0f,0.0f };
 	capsuleRadius_ = 20.0f;
 
 	sphereRadius_ = 20.0f;
@@ -86,23 +96,30 @@ void Player::Update(void)
 
 	// アニメーションの更新
 	animationController_->Update();
+	SetLightPositionHandle(LightHandle, pos_);
 }
 
 void Player::Draw(void)
 {
 	ActorBase::Draw();
-	DrawFormatString(
-		0, 50, 0xffffff,
-		"キャラ座標　 ：(%f, %f, %f)",
-		pos_.x,
-		pos_.y,
-		pos_.z
-	);
+	//DrawFormatString(
+	//	0, 50, 0xffffff,
+		//"キャラ座標　 ：(%f, %f, %f)",
+		//pos_.x,
+		//pos_.y,
+		//pos_.z
+	//);
+
+	DrawSphere3D(VAdd(startCapsulePos_, pos_), capsuleRadius_, 16, 0xff0000, 0xff0000, true);
+	DrawSphere3D(VAdd(endCapsulePos_, pos_), capsuleRadius_, 16, 0xff0000, 0xff0000, true);
 }
 
 void Player::Release(void)
 {
 	ActorBase::Release();
+
+	// ライトハンドルの削除
+	DeleteLightHandle(LightHandle);
 }
 
 void Player::Move(void)

@@ -53,9 +53,9 @@ void Calender::InitLoad(void)
 
 void Calender::InitTransform(void)
 {
-	pos_ = { 0.000370f,200.0f,860.0f };
-	scale_ = { 0.7f,0.7f,0.7f };
-	angle_ = { 0.0f,0.0f * DX_PI_F / 180.0f,0.0f };
+	pos_ = { -1589.290527f,180.0f,-1035.0f };
+	scale_ = { 1.0f,1.0f,1.0f };
+	angle_ = { 0.0f,180.0f * DX_PI_F / 180.0f,0.0f };
 
 	for (int i = 0; i < static_cast<int>(Calender::CALENDER::MAX); i++)
 	{
@@ -77,4 +77,6 @@ void Calender::InitPost(void)
 	isCollision_ = true;
 	sphereRadius_ = 100.0f;
 	nowCalender_ = CALENDER::JAN;
+
+
 }
