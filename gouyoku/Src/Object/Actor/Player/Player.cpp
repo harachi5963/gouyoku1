@@ -77,9 +77,9 @@ void Player::InitPost(void)
 	tag_ = TAG::PLAYER;
 
 	// ìñÇΩÇËîªíËÇçÏê¨
-	startCapsulePos_ = { 0.0f,110,0.0f };
-	endCapsulePos_ = { 0.0f,30.0f,0.0f };
-	capsuleRadius_ = 60.0f;
+	startCapsulePos_ = { 0.0f,150,0.0f };
+	endCapsulePos_ = { 0.0f,0.0f,0.0f };
+	capsuleRadius_ = 20.0f;
 
 	sphereRadius_ = 20.0f;
 
@@ -109,6 +109,9 @@ void Player::Draw(void)
 		//pos_.y,
 		//pos_.z
 	//);
+
+	DrawSphere3D(VAdd(startCapsulePos_, pos_), capsuleRadius_, 16, 0xff0000, 0xff0000, true);
+	DrawSphere3D(VAdd(endCapsulePos_, pos_), capsuleRadius_, 16, 0xff0000, 0xff0000, true);
 }
 
 void Player::Release(void)
