@@ -29,6 +29,7 @@ namespace SoundTable_Game
 	{
 		{ SoundID::BGM_BATTLE, "Data/Sound/hora-BGM.mp3" },
 		{ SoundID::SE_WORK, "Data/Sound/work.mp3"},
+		{ SoundID::SE_OPEN, "Data/Sound/open.mp3"},
 		{ SoundID::SE_RUN,	"Data/Sound/SE/hit.wav" },
 		{ SoundID::SE_ATTACK, "Data/Sound/SE/attack.wav" },
 	};

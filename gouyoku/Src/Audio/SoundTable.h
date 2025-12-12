@@ -9,6 +9,7 @@ enum class SoundID
 	BGM_CLEAR,
 	BGM_BATTLE,
 	SE_WORK,
+	SE_OPEN,
 	SE_BUTTON,
 	SE_RUN,
 	SE_ATTACK,
