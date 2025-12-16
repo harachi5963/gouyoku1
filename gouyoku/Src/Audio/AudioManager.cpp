@@ -154,8 +154,11 @@ void AudioManager::PlaySE(SoundID id)
 	// ‰¹—Ê‚ð•ÏX
 	ChangeVolumeSoundMem(volume, it->second);
 
-	// SE‚Í•¡”“¯ŽžÄ¶‚ð‹–‰Â
-	PlaySoundMem(it->second, DX_PLAYTYPE_BACK, true);
+	if (CheckSoundMem(it->second) != 1)
+	{
+		// SE‚Í•¡”“¯ŽžÄ¶‚ð‹–‰Â
+		PlaySoundMem(it->second, DX_PLAYTYPE_BACK, true);
+	}
 }
 
 void AudioManager::DeleteAll(void)

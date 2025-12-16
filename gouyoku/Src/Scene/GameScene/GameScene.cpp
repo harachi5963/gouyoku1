@@ -221,6 +221,7 @@ void GameScene::LoadEnd(void)
 	// フォグの開始距離を０、終了距離を１５００にする
 	SetFogStartEnd(0.0f, 3000.0f);
 
+	AudioManager::GetInstance()->SetBgmVolume(127);
 	AudioManager::GetInstance()->PlayBGM(SoundID::BGM_BATTLE);
 }
 
@@ -603,15 +604,29 @@ void GameScene::ObjectCollision(ActorBase* actor)
 					hit.Position[2]					// ポリゴン3
 				);
 
-				// カプセルとポリゴンが当たっていた
 				if (pHit)
 				{
-					// 当たっていたので座標をポリゴンの法線方向に移動させる
-					pos = VAdd(pos, VScale(hit.Normal, 1.0f));
+					// 法線を水平成分だけにする
+					VECTOR horizontalNormal = hit.Normal;
 
-					// 球体の座標も移動させる
-					capStartPos = VAdd(capStartPos, VScale(hit.Normal, 1.0f));
-					capEndPos = VAdd(capEndPos, VScale(hit.Normal, 1.0f));
+					horizontalNormal.y = 0.0f;
+
+					// 長さ0を排除
+					if (VSize(horizontalNormal) > 0.0001f)
+					{
+						// 正規化
+						horizontalNormal = VNorm(horizontalNormal);
+
+						// 押し出し量
+						const float pushAmount = 1.0f;
+
+						// 上下方向を除いた水平押し出し
+						pos = VAdd(pos, VScale(horizontalNormal, pushAmount));
+
+						// カプセル位置も押し出す
+						capStartPos = VAdd(capStartPos, VScale(horizontalNormal, pushAmount));
+						capEndPos = VAdd(capEndPos, VScale(horizontalNormal, pushAmount));
+					}
 
 					// 複数当たっている可能性があるので再検索
 					continue;

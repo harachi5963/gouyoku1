@@ -1,6 +1,8 @@
 #include "Door.h"
 #include "../../Common/AnimationController.h"
 #include "../../../Input/InputManager.h"
+#include "../../../Audio/SoundTable.h"
+#include "../../../Audio/AudioManager.h"
 
 Door::Door()
 {
@@ -21,6 +23,7 @@ void Door::InitTransform(void)
 
 void Door::InitAnimation(void)
 {
+	AudioManager::GetInstance()->PlaySE(SoundID::SE_OPEN);
 }
 
 void Door::InitPost(void)
