@@ -111,8 +111,8 @@ void Player::Draw(void)
 		//pos_.z
 	//);
 
-	DrawSphere3D(VAdd(startCapsulePos_, pos_), capsuleRadius_, 16, 0xff0000, 0xff0000, true);
-	DrawSphere3D(VAdd(endCapsulePos_, pos_), capsuleRadius_, 16, 0xff0000, 0xff0000, true);
+	//DrawSphere3D(VAdd(startCapsulePos_, pos_), capsuleRadius_, 16, 0xff0000, 0xff0000, true);
+	//DrawSphere3D(VAdd(endCapsulePos_, pos_), capsuleRadius_, 16, 0xff0000, 0xff0000, true);
 }
 
 void Player::Release(void)
